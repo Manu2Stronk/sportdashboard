@@ -7,6 +7,32 @@
     <script src = "./page-bike/page-bike.js"> </script>
     <script src = "./page-run/page-run.js"> </script>
     <script src = "./page-swim/page-swim.js"> </script>
+    <script type="text/javascript">
+      let pages =
+        [
+          {
+            url: "/bike",
+            resource: "/page-bike/page-bike.html",
+            klasse: pageDetail
+          },
+          {
+            url: "/run",
+            resource: "/page-run/page-run.html"
+            //,klasse: AboutPage
+          },
+          {
+            url: "/swim",
+            resource: "/page-swim/page-swim.html"
+            //,klasse: AboutPage
+          }
+        ];
+
+      window.addEventListener("load", ()=> {
+        let app = new App(pages);
+        app.run();
+      });
+    </script>
+
   </head>
   <body>
 
