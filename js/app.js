@@ -20,7 +20,7 @@ class App{
     this.currentPageObj = new page.klasse(this);
     this.currentPageObj.show();
   }
-  
+
   setPageContent(htmlContent){
     let container = document.querySelector("#content");
     container.innerHTML = htmlContent;
