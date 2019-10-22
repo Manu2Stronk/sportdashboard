@@ -1,9 +1,9 @@
-class pageSwim{
+class pageAnalytic{
   constructor(app){
     this._app = app;
   }
   async show(){
-    let html = await fetch("page-swim/page-swim.html")
+    let html = await fetch("page-analytic/page-analytic.html")
     let htmlContent = "";
     if(html.ok){
       htmlContent = await html.text();
