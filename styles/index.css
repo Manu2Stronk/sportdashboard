@@ -1,5 +1,11 @@
 body{
-  /* background-color: #DCDCDC; */
-  /* background-color: #000066; */
+  background-color: #DCDCDC;
+  margin: 0px;
+}
+.topBar{
+  background-color: #000066;
+}
+.menu{
   background-color: #0000ff;
+  position: fixed;
 }
