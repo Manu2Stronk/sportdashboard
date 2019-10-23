@@ -1,10 +1,69 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    Plan
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <title>Sport Dashboard</title>
+
+  <!-- Scripts -->
+  <script src="./js/app.js"> </script>
+  <script src="./page-activity/page-activity.js"> </script>
+  <script src="./page-analytic/page-analytic.js"> </script>
+  <script src="./page-plan/page-plan.js"> </script>
+  <script type="text/javascript">
+    let pages = [{
+        url: "/activity",
+        resource: "/page-activity/page-activity.html",
+        klasse: pageActivity
+      },
+      {
+        url: "/analytic",
+        resource: "/page-analytic/page-analytic.html",
+        klasse: pageAnalytic
+      },
+      {
+        url: "/plan",
+        resource: "/page-plan/page-plan.html",
+        klasse: pagePlan
+      }
+    ];
+
+    window.addEventListener("load", () => {
+      let app = new App(pages);
+      app.run();
+    });
+  </script>
+  <!-- End of Scripts -->
+  <!-- <link rel="stylesheet" href="./styles/index.css"> -->
+  <link rel="stylesheet" href="./styles/page-plan.css">
+</head>
+
+<!-- Body starts here -->
+<body>
+  <div class="topBar">
+    <div class="topBarHeadline">
+      📈 Sport Dashboard
+    </div>
+    <div class="menu">
+      <div class="menuItem">
+        <a href="#/activity">
+          <span class="menuItem-icon">❤️</span>
+          <span class="menuItem-text">Activity</span>
+        </a>
+      </div>
+      <div class="menuItem">
+        <a href ="#/analytic">
+        <span class="menuItem-icon">🚴‍♂️</span>
+        <span class="menuItem-text">Analytic</span>
+      </a>
+      </div>
+      <div class="menuItem">
+        <a href ="#/plan">
+        <span class="menuItem-icon">🔍</span>
+        <span class="menuItem-text">Plan</span>
+      </a>
+      </div>
+    </div>
+  </div>
+</body>
 </html>
