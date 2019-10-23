@@ -1,5 +1,45 @@
-.dropdown{
-  background-color: grey;
+.dropdown {
+  background-color: white;
   height: 400px;
-  width: 100%;
+  width: 80%;
+  margin: 0px auto;
+  margin-top: 10px;
+  border-radius: 20px;
+  animation: ;
+}
+
+.buttonAddWorkout {
+  background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+  background-color: white;
+  border-radius: 15px;
+  border: 2px solid #dcdcdc;
+  display: inline-block;
+  cursor: pointer;
+  color: black;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 12px 16px;
+  text-decoration: none;
+  margin-left: 10%;
+  margin-top: 10px;
+}
+
+.buttonAddWorkout:hover {
+  background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+  background-color: #f6f6f6;
+}
+
+.buttonAddWorkout:active {
+  position: relative;
+  top: 1px;
+}
+
+.buttonCloseWorkout {
+  margin-top: 10px;
+  position: inline;
+  background-color: white;
+  border: none;
+  margin-right: 10px;
+  float: right;
 }
