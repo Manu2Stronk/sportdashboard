@@ -6,6 +6,18 @@ body {
   background-color: #DCDCDC;
   margin: 0em;
 }
+
+/* Fonts */
+a{
+  color: #FFFFFF;
+  text-decoration: none solid white;
+}
+a:hover{
+  text-transform: uppercase;
+  text-decoration: underline solid white;
+}
+/* End Fonts */
+
 /* Tablet responsive */
 @media only screen and (max-width: 1025px) {
   menu{
