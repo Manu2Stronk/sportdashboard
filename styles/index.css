@@ -36,7 +36,6 @@ a:hover{
 .topBar {
   width: 100%;
   color: #FFFFFF;
-  position: fixed;
 }
 
 .topBarHeadline {
@@ -51,7 +50,6 @@ a:hover{
   height: 3em;
   margin-top: 0em;
   margin: auto;
-  position: fixed;
   background-color: #0404B4;
   width: 100%;
   height: auto;
