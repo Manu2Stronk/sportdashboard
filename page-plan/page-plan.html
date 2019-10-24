@@ -6,31 +6,16 @@
   <title>Sport Dashboard</title>
 
   <!-- Scripts -->
-  <script src="./js/app.js"> </script>
-  <script src="./page-activity/page-activity.js"> </script>
-  <script src="./page-analytic/page-analytic.js"> </script>
-  <script src="./page-plan/page-plan.js"> </script>
+  <script src="./../js/app.js"> </script>
+  <script src="./../page-activity/page-activity.js"> </script>
+  <script src="./../page-analytic/page-analytic.js"> </script>
+  <script src="./../page-plan/page-plan.js"> </script>
+  <script src="./plan.js"></script>
   <script type="text/javascript">
-    let pages = [{
-        url: "/activity",
-        resource: "/page-activity/page-activity.html",
-        klasse: pageActivity
-      },
-      {
-        url: "/analytic",
-        resource: "/page-analytic/page-analytic.html",
-        klasse: pageAnalytic
-      },
-      {
-        url: "/plan",
-        resource: "/page-plan/page-plan.html",
-        klasse: pagePlan
-      }
-    ];
-
     window.addEventListener("load", () => {
-      let app = new App(pages);
-      app.run();
+      console.log("page-plan.html running");
+      let plan = new Plan();
+      plan.run();
     });
   </script>
   <!-- End of Scripts -->
@@ -40,6 +25,7 @@
 </head>
 
 <!-- Body starts here -->
+
 <body>
   <div class="topBar">
     <div class="topBarHeadline">
@@ -53,21 +39,21 @@
         </a>
       </div>
       <div class="menuItem">
-        <a href ="#/analytic">
-        <span class="menuItem-icon">🚴‍♂️</span>
-        <span class="menuItem-text">Analytic</span>
-      </a>
+        <a href="#/analytic">
+          <span class="menuItem-icon">🚴‍♂️</span>
+          <span class="menuItem-text">Analytic</span>
+        </a>
       </div>
       <div class="menuItem">
-        <a href ="#/plan">
-        <span class="menuItem-icon">🔍</span>
-        <span class="menuItem-text">Plan</span>
-      </a>
+        <a href="#/plan">
+          <span class="menuItem-icon">🔍</span>
+          <span class="menuItem-text">Plan</span>
+        </a>
       </div>
     </div>
   </div>
 
-  <input type="button" name="" class="buttonAddWorkout" value="➕Add Workout" >
+  <input type="button" name="" class="buttonAddWorkout" value="➕Add Workout">
   <!-- Start of Dropdown  -->
   <div class="dropdown">
 
@@ -75,4 +61,5 @@
   </div>
 
 </body>
+
 </html>

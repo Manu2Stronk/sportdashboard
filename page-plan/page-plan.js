@@ -3,6 +3,7 @@ class pagePlan{
     this._app = app;
   }
   async show(){
+    console.log("page-plan: show() running");
     let html = await fetch("page-plan/page-plan.html")
     let htmlContent = "";
     if(html.ok){
