@@ -9,13 +9,17 @@
   <script src="./../js/app.js"> </script>
   <script src="./../page-activity/page-activity.js"> </script>
   <script src="./../page-analytic/page-analytic.js"> </script>
-  <script src="./../page-plan/page-plan.js"> </script>
+  <!-- <script src="./../page-plan/page-plan.js"> </script> -->
   <script src="./plan.js"></script>
   <script type="text/javascript">
     window.addEventListener("load", () => {
       console.log("page-plan.html running");
-      let plan = new Plan();
-      plan.run();
+      let buttonAddWorkout = document.getElementById("buttonAddWorkout");
+      buttonAddWorkout.addEventListener("click", () => {
+          console.log("buttonAddWorkout clicked");
+          let plan = new Plan();
+          plan.run();
+      });
     });
   </script>
   <!-- End of Scripts -->
@@ -53,7 +57,7 @@
     </div>
   </div>
 
-  <input type="button" name="" class="buttonAddWorkout" value="➕Add Workout">
+  <input type="button" name="" class="buttonAddWorkout" id="buttonAddWorkout" value="➕Add Workout">
   <!-- Start of Dropdown  -->
   <div class="dropdown">
 
