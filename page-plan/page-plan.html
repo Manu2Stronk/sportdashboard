@@ -16,10 +16,10 @@
       console.log("page-plan.html running");
       let buttonAddWorkout = document.getElementById("buttonAddWorkout");
       buttonAddWorkout.addEventListener("click", () => {
-          console.log("buttonAddWorkout clicked");
-          let dropdown = document.getElementById("dropdown");
-          let plan = new Plan(dropdown);
-          plan.create();
+        console.log("buttonAddWorkout clicked");
+        let dropdown = document.getElementById("dropdown");
+        let plan = new Plan(dropdown);
+        plan.create();
       });
     });
   </script>
@@ -63,6 +63,49 @@
   <div class="dropdown" id="dropdown">
     <div class="workoutElement">
       <input type="button" class="buttonCloseWorkout" name="" value="x">
+      <p>Workout Beschreibung</p>
+
+      <!-- <fieldset>
+        <input type="radio" id="radioBike" name="bike" value="Bike">
+        <label for="radioBike">🚴‍Bike‍</label>
+        <input type="radio" id="radioRun" name="run" value="Run">
+        <label for="radioRun">🏃Run</label>
+        <input type="radio" id="radioSwim" name="swim" value="Swim">
+        <label for="radioSwim">🏊Swim</label>
+        <input type="radio" id="radioAthletics" name="athletics" value="Athletics">
+        <label for="radioAthletics">🏋️Athletics</label>
+      </fieldset> -->
+
+<!-- Radiogroup -->
+<div class="control-group">
+    <label class="control control-radio">
+        🚴‍Bike
+        <input type="radio" name="radio" checked="checked" />
+        <div class="control_indicator"></div>
+    </label>
+    <label class="control control-radio">
+        🏃Run
+        <input type="radio" name="radio" />
+        <div class="control_indicator"></div>
+    </label>
+    <label class="control control-radio">
+        🏊Swim
+        <input type="radio" name="radio" />
+        <div class="control_indicator"></div>
+    </label>
+    <label class="control control-radio">
+        🏋️Athletics
+        <input type="radio" name="radio" />
+        <div class="control_indicator"></div>
+    </label>
+</div>
+
+
+
+
+
+
+
     </div>
   </div>
 
