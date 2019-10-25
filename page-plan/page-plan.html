@@ -17,8 +17,9 @@
       let buttonAddWorkout = document.getElementById("buttonAddWorkout");
       buttonAddWorkout.addEventListener("click", () => {
           console.log("buttonAddWorkout clicked");
-          let plan = new Plan();
-          plan.run();
+          let dropdown = document.getElementById("dropdown");
+          let plan = new Plan(dropdown);
+          plan.create();
       });
     });
   </script>
@@ -59,9 +60,10 @@
 
   <input type="button" name="" class="buttonAddWorkout" id="buttonAddWorkout" value="➕Add Workout">
   <!-- Start of Dropdown  -->
-  <div class="dropdown">
-
-    <input type="button" class="buttonCloseWorkout" name="" value="x">
+  <div class="dropdown" id="dropdown">
+    <div class="workoutElement">
+      <input type="button" class="buttonCloseWorkout" name="" value="x">
+    </div>
   </div>
 
 </body>

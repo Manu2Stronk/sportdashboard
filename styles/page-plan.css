@@ -1,11 +1,13 @@
 .dropdown {
+
+}
+.workoutElement{
   background-color: white;
   height: 400px;
   width: 80%;
   margin: 0px auto;
   margin-top: 10px;
   border-radius: 20px;
-  animation: ;
 }
 
 .buttonAddWorkout {
