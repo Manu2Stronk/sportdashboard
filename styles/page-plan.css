@@ -1,5 +1,5 @@
 .dropdown {
-  display: flex;
+  display: block;
 }
 
 .workoutElement {
@@ -47,6 +47,68 @@
   float: right;
 }
 
+/* workoutTitle */
+.workoutTitle {
+  font-size: 30px;
+  width: 60%;
+  border: none;
+  margin-top: 10px;
+  margin-left: 6%;
+}
+
+.dateclass {
+  width: 30%;
+  font-size: 20px;
+  text-align: right;
+  margin-top: 0px;
+  border: none;
+}
+
+/* .dateclass.placeholderclass::before {
+  width: 100%;
+  content: attr(placeholder);
+}
+
+.dateclass.placeholderclass:hover::before {
+  width: 0%;
+  content: "";
+} */
+/* divDistance{
+  height: 50px;
+  weight: 30%;
+  position: inline;
+  margin: 0 auto;
+} */
+.divDD {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+}
+
+.inputDistance {
+  margin: 0 auto;
+  font-size: 40px;
+  height: 50px;
+  width: 100px;
+  text-align: center;
+}
+
+.buttonSwitchDD {
+  margin: 0 auto;
+  height: 50px;
+  font-size: 40px;
+  background-color: white;
+  border: none;
+}
+
+.buttonSwitchRight {
+  margin: 0 auto;
+}
+
+.buttonSwitchLeft {
+  margin: 0 auto;
+}
+
 /* Radiogroup */
 .control {
   font-family: arial;
@@ -79,6 +141,7 @@
 
 .control-group {
   display: flex;
+  margin-top: 10px;
 }
 
 .control:hover input~.control_indicator,
