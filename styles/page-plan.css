@@ -4,11 +4,21 @@
 
 .workoutElement {
   background-color: white;
-  height: 400px;
+  height: 410px;
   width: 80%;
   margin: 0px auto;
   margin-top: 10px;
   border-radius: 20px;
+}
+
+.divWorkout {
+  background-color: white;
+  height: 410px;
+  width: 80%;
+  margin: 0px auto;
+  margin-top: 10px;
+  border-radius: 20px;
+  display: none;
 }
 
 .buttonAddWorkout {
@@ -48,19 +58,27 @@
 }
 
 /* workoutTitle */
+.divTitleAndDate {
+  position: block;
+  width: 100%;
+}
+
 .workoutTitle {
   font-size: 30px;
-  width: 60%;
+  heigt: 40px;
+  width: 300px;
   border: none;
-  margin-top: 10px;
-  margin-left: 6%;
+  margin-left: 4.75%;
+  margin-top: 20px;
 }
 
 .dateclass {
-  width: 30%;
+  height: 40px;
+  float: right;
+  width: 200px;
   font-size: 20px;
   text-align: right;
-  margin-top: 0px;
+  margin-top: 20px;
   border: none;
 }
 
@@ -79,34 +97,55 @@
   position: inline;
   margin: 0 auto;
 } */
-.divDD {
+.divBlock {
+  display: flex;
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.divDistance {
+  display: block;
   margin: auto;
-  width: 60%;
-  padding: 10px;
+  width: 200px;
+}
+
+.divDD{
+  width: 200px;
+  display: inline;
+}
+
+.textDistance {
+  display: inline;
+  text-align: center;
+  font-size: 30px;
+  margin: auto;
+  margin-left: 35px;
 }
 
 .inputDistance {
+  display: inline;
   margin: 0 auto;
   font-size: 40px;
   height: 50px;
-  width: 100px;
+  width: 200px;
   text-align: center;
+  border: none;
 }
 
 .buttonSwitchDD {
+  display: inline;
   margin: 0 auto;
-  height: 50px;
+  width: 40px;
+  text-align: center;
   font-size: 40px;
   background-color: white;
   border: none;
 }
 
 .buttonSwitchRight {
-  margin: 0 auto;
-}
-
-.buttonSwitchLeft {
-  margin: 0 auto;
+  float: right;
 }
 
 /* Radiogroup */
@@ -116,7 +155,7 @@
   position: relative;
   padding-left: 30px;
   margin-bottom: 5px;
-  padding-top: 4px;
+  padding-top: 0px;
   cursor: pointer;
   font-size: 16px;
   margin: 0 auto;
@@ -251,4 +290,44 @@
 
 .control-radio input:checked+.control_indicator::before {
   animation-name: s-ripple-dup;
+}
+
+/* Discription Box */
+
+.boxDiscription{
+  margin-left: 4.75%;
+  margin-top: 20px;
+  width: 90%;
+  height: 100px;
+  border-radius: 5px;
+}
+
+/* Save Button */
+
+.buttonSave {
+  background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+  background-color: white;
+  border-radius: 15px;
+  border: 2px solid #dcdcdc;
+  display: block;
+  cursor: pointer;
+  color: black;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 12px 16px;
+  text-decoration: none;
+  margin-top: 10px;
+  float: right;
+  margin-right: 4.75%;
+}
+
+.buttonSave:hover {
+  background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+  background-color: #f6f6f6;
+}
+
+.buttonSave:active {
+  position: relative;
+  top: 1px;
 }

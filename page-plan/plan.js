@@ -2,9 +2,14 @@ class Plan {
   constructor(buttonAddWorkout) {
     this.dropdown = dropdown;
   }
-  create(){
-    console.log("plan running");
-
+  create(divWorkout){
+    console.log("create()");
+    console.log(divWorkout);
+    divWorkout.style.display = "block";
+  }
+  save(divWorkout){
+    console.log("save()");
+    divWorkout.style.display = "none";
     // def div-Element
     let divElement = document.createElement("div");
     divElement.className += "workoutElement";

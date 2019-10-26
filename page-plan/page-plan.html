@@ -15,11 +15,17 @@
     window.addEventListener("load", () => {
       console.log("page-plan.html running");
       let buttonAddWorkout = document.getElementById("buttonAddWorkout");
+      let dropdown = document.getElementById("dropdown");
+      let divWorkout = document.getElementById("divWorkout");
+
+      let plan = new Plan(dropdown);
       buttonAddWorkout.addEventListener("click", () => {
         console.log("buttonAddWorkout clicked");
-        let dropdown = document.getElementById("dropdown");
-        let plan = new Plan(dropdown);
-        plan.create();
+        plan.create(divWorkout);
+      });
+      buttonSave.addEventListener("click", () => {
+        console.log("buttonSave clicked");
+        plan.save(divWorkout);
       });
     });
   </script>
@@ -61,18 +67,25 @@
   <input type="button" name="" class="buttonAddWorkout" id="buttonAddWorkout" value="➕Add Workout">
   <!-- Start of Dropdown  -->
   <div class="dropdown" id="dropdown">
-    <div class="workoutElement">
+    <div class="divWorkout" id="divWorkout">
       <!-- <input type="button" class="buttonCloseWorkout" name="" value="x"> -->
-      <input type="text" name="Workout" value="" class="workoutTitle" placeholder="Workout-Title">
-      <input type="date" class="dateclass">
+      <div class="divTitleAndDate">
+        <input type="text" name="Workout" value="" class="workoutTitle" placeholder="Workout-Title">
+        <input type="date" class="dateclass">
+      </div>
 
-
-
-      <div class="divDD">
+      <!-- Block with Distance -->
+      <div class="divBlock">
         <input type="button" name="" value="<" class="buttonSwitchDD buttonSwitchLeft">
-        <input type="number" name="" value="" placeholder="0km" class="inputDistance">
+        <div class="divDD">
+          <div class="textDistance">
+            Distance
+          </div>
+          <input type="number" name="" value="" placeholder="0km" class="inputDistance">
+        </div>
         <input type="button" name="" value=">" class="buttonSwitchDD buttonSwitchRight">
       </div>
+
 
       <!-- Radiogroup -->
       <div class="control-group">
@@ -98,6 +111,9 @@
         </label>
       </div>
 
+      <input type="text" name="" placeholder="Discription" class="boxDiscription">
+
+      <input type="button" name="" value="💾Save" class="buttonSave" id="buttonSave">
 
 
 
