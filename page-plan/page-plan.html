@@ -21,7 +21,11 @@
       let plan = new Plan(dropdown);
       buttonAddWorkout.addEventListener("click", () => {
         console.log("buttonAddWorkout clicked");
-        plan.create(divWorkout);
+        let title = document.getElementById("workoutTitle").value;
+        console.log("title:" + title);
+        let buttonElement = plan.create(divWorkout);
+        console.log(buttonElement);
+
       });
       buttonSave.addEventListener("click", () => {
         console.log("buttonSave clicked");
@@ -70,7 +74,7 @@
     <div class="divWorkout" id="divWorkout">
       <!-- <input type="button" class="buttonCloseWorkout" name="" value="x"> -->
       <div class="divTitleAndDate">
-        <input type="text" name="Workout" value="" class="workoutTitle" placeholder="Workout-Title">
+        <input type="text" name="Workout" value="" id="workoutTitle" class="workoutTitle" placeholder="Workout-Title">
         <input type="date" class="dateclass">
       </div>
 
