@@ -56,43 +56,15 @@
   <!--Topbar closed-->
 
   <div class="manualInsert">
+
+    <!-- Page Title -->
     <div class="pageTitle">
       <h1>Manual Activity</h1>
-      <button>Add Activity</button>
+      <button onclick="ActivityPage.openAddActivityModal()">Add Activity</button>
       <button onclick="ActivityPage.loadAllActivities()">🔄</button>
-
     </div>
-    <form method="POST">
-      <table border="0" cellspacing="0" cellpadding="2">
-        <tbody>
-          <tr>
-            <td>Sportart</td>
-            <td>
-              <select name="Sportart">
-                <option value="Swim"> Swim </opoption>
-                <option value="Bike"> Bike </opoption>
-                <option value="Run"> Run </opoption>
-                <option value="other"> other </opoption>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td>Dauer</td>
-            <td>
-              <div id="duration" class="controls duration">
-                <input type="text" id="time-hour" class="input-mini" value="0" maxlength="2"> :
-                <input type="text" id="time-minute" class="input-mini" value="0" maxlength="2">
-                :
-                <input type="text" id="time-second" class="input-mini" value="0" maxlength="2">
-                <span class="format-example">(hh : mm : ss)</span>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </form>
-    <!-- <input type ="submit"> -->
 
+    <!-- Activity Table -->
     <table class="activityTable">
       <thead>
         <tr>
@@ -107,6 +79,55 @@
 
       <tbody id="idActivityTableBody"/>
     </table>
+
+    <!-- Add Activity Modal/Form -->
+    <div id="idAddActivityModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Add Activity</h2>
+          <button onclick="ActivityPage.closeAddActivityModal()" class="close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form class="addActivityForm" onsubmit="ActivityPage.onSaveNewActivity(event)">
+            <div class="formContainer">
+            Name: <input id="idAddActivityForm-nameField" type="text" name="name" placeholder="Name" required>
+          </div>
+
+            <div class="formContainer">
+            Type:<select id="idAddActivityForm-typeField" name="Sportart">
+              <option value="Swim"> Swim </opoption>
+              <option value="Bike"> Bike </opoption>
+              <option value="Run"> Run </opoption>
+              <option value="other"> other </opoption>
+            </select>
+            </div>
+
+            <div class="formContainer">
+            Date: <input type="date" placeholder="Date" id="idAddActivityForm-dateField" required/>
+            </div>
+            <div id="duration" class="controls duration">
+              <input type="text" id="idAddActivityForm-time-hour" class="input-mini" value="0" maxlength="2"> :
+              <input type="text" id="idAddActivityForm-time-minute" class="input-mini" value="0" maxlength="2" > :
+              <input type="text" id="idAddActivityForm-time-second" class="input-mini" value="0" maxlength="2" >
+              <span class="format-example">(hh:mm:ss)</span>
+            </div>
+
+            <div class="formContainer">
+              Calories: <input id="idAddActivityForm-caloriesField" type="number" placeholder="Calories" maxlength="9" required>
+            </div>
+
+            <div class="formContainer">
+            Distance: <input id="idAddActivityForm-distanceField" type="number" placeholder="Distance" maxlength="9" required>
+            </div>
+
+            <div class="modal-footer">
+                <input type="submit" value="Save" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
 
 </body>
 
