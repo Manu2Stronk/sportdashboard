@@ -13,6 +13,10 @@ class pageActivity{
     this.loadAllActivities();
   }
 
+    /**
+     * Loads the activities from the backend and renders them to the page
+     * @public
+     */
     async loadAllActivities() {
       //clear the table
       var oActivityTable = document.getElementById("idActivityTableBody");
@@ -24,11 +28,15 @@ class pageActivity{
       var oQuerySnapshot = await firebase.firestore().collection("activities").get();
       oQuerySnapshot.docs.forEach((oDocument) => {
         var oActivity = oDocument.data();
-        console.log(oActivity);
+        //console.log(oActivity);
         this.renderActivity(oActivity);
       })
     }
 
+    /**
+     * Renders a given activity to the activity table
+     * @public
+     */
     renderActivity(oActivity) {
       var oActivityTable = document.getElementById("idActivityTableBody"),
           temp = document.createElement('tr'),
@@ -45,6 +53,54 @@ class pageActivity{
       oActivityTable.appendChild(temp);
     }
 
+    /**
+     * Opens the add activity form/Modal
+     * @public
+     */
+    openAddActivityModal() {
+        var oModal = document.getElementById("idAddActivityModal");
+        oModal.style.display = "block";
+    }
+
+    /**
+     * Closes the add activity form/Modal
+     * @public
+     */
+    closeAddActivityModal() {
+      var oModal = document.getElementById("idAddActivityModal");
+      oModal.style.display = "none";
+    }
+
+    onSaveNewActivity(oEvent) {
+      oEvent.preventDefault(); //prevents default reload/redirect mechanic
+
+      var oActivity = {
+        name: document.getElementById("idAddActivityForm-nameField").value,
+        type: document.getElementById("idAddActivityForm-typeField").selectedOptions[0].text,
+        distance: parseFloat(document.getElementById("idAddActivityForm-distanceField").value),
+        cal: parseInt(document.getElementById("idAddActivityForm-caloriesField").value),
+        date: new Date(document.getElementById("idAddActivityForm-dateField").value),
+
+        durationHH: parseFloat(document.getElementById("idAddActivityForm-time-hour").value),
+        durationMM: parseFloat(document.getElementById("idAddActivityForm-time-minute").value),
+        durationSS: parseFloat(document.getElementById("idAddActivityForm-time-second").value),
+      }
+
+      console.log(oActivity);
+      firebase.firestore().collection("activities").doc().set(oActivity)
+        .then(() => {
+            this.closeAddActivityModal();
+            this.loadAllActivities();
+        });
+
+        return false;
+    };
+
+
+
+
+    /* Formatter */
+
     formatDate(oActivity) {
         var monthNames = [
           "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
@@ -57,7 +113,7 @@ class pageActivity{
 
 
     formatDuration(oActivity) {
-      return oActivity.dauerHH + ":" + oActivity.dauerMM + ":" + oActivity.dauerSS;
+      return oActivity.durationHH + ":" + oActivity.durationMM + ":" + oActivity.durationSS;
     }
 
     formatAverageSpeed(oActivity) {
@@ -65,9 +121,9 @@ class pageActivity{
     }
 
     calculateAverageSpeed(oActivity) {
-      var iDuraitonInSeconds = oActivity.dauerHH * 60 * 60 +
-          oActivity.dauerMM * 60 +
-          oActivity.dauerSS,
+      var iDuraitonInSeconds = oActivity.durationHH * 60 * 60 +
+          oActivity.durationMM * 60 +
+          oActivity.durationSS,
           iAvgSpeed = oActivity.distance / iDuraitonInSeconds * 3600;
 
       return Math.floor(iAvgSpeed * 100) / 100;
