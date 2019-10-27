@@ -10,6 +10,22 @@
   <script src="./page-activity/page-activity.js"> </script>
   <script src="./page-analytic/page-analytic.js"> </script>
   <script src="./page-plan/page-plan.js"> </script>
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyBjniuB_NbZDWLJWoloYlET3Hih14CldPM",
+      authDomain: "sport-dashboard.firebaseapp.com",
+      databaseURL: "https://sport-dashboard.firebaseio.com",
+      projectId: "sport-dashboard",
+      storageBucket: "sport-dashboard.appspot.com",
+      messagingSenderId: "888929216804",
+      appId: "1:888929216804:web:23bc334f01d27a1c89ebb1"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
   <script type="text/javascript">
     let pages = [{
         url: "/activity",
