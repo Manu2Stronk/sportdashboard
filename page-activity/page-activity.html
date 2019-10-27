@@ -1,49 +1,74 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Activity</title>
-    <script src="./page-activity.js"> </script>
-    <link rel="stylesheet" href="./../styles/index.css">
-    <!-- <link rel="stylesheet" href="./../page-activity/page-activity.css"> -->
-  </head>
-  <body>
-    <!-- manual Activity -->
-    <div class="topBar">
-      <div class="topBarHeadline">
-        📈 Sport Dashboard
+
+<head>
+  <meta charset="utf-8">
+  <title>Activity</title>
+  <script src="./page-activity.js"> </script>
+  <link rel="stylesheet" href="./../styles/index.css">
+  <link rel="stylesheet" href="./page-activity.css">
+
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyBjniuB_NbZDWLJWoloYlET3Hih14CldPM",
+      authDomain: "sport-dashboard.firebaseapp.com",
+      databaseURL: "https://sport-dashboard.firebaseio.com",
+      projectId: "sport-dashboard",
+      storageBucket: "sport-dashboard.appspot.com",
+      messagingSenderId: "888929216804",
+      appId: "1:888929216804:web:23bc334f01d27a1c89ebb1"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <!-- <link rel="stylesheet" href="./../page-activity/page-activity.css"> -->
+</head>
+
+<body>
+  <!-- manual Activity -->
+  <div class="topBar">
+    <div class="topBarHeadline">
+      📈 Sport Dashboard
+    </div>
+    <div class="menu">
+      <div class="menuItem">
+        <a href="#/activity">
+          <span class="menuItem-icon">❤️</span>
+          <span class="menuItem-text">Activity</span>
+        </a>
       </div>
-      <div class="menu">
-        <div class="menuItem">
-          <a href="#/activity">
-            <span class="menuItem-icon">❤️</span>
-            <span class="menuItem-text">Activity</span>
-          </a>
-        </div>
-        <div class="menuItem">
-          <a href ="#/analytic">
+      <div class="menuItem">
+        <a href="#/analytic">
           <span class="menuItem-icon">🚴‍♂️</span>
           <span class="menuItem-text">Analytic</span>
         </a>
-        </div>
-        <div class="menuItem">
-          <a href ="#/plan">
+      </div>
+      <div class="menuItem">
+        <a href="#/plan">
           <span class="menuItem-icon">🔍</span>
           <span class="menuItem-text">Plan</span>
         </a>
-        </div>
       </div>
-    </div> <!--Topbar closed-->
+    </div>
+  </div>
+  <!--Topbar closed-->
 
-    <div class="manualInsert">
-    <h1>Manual Activity</h1>
+  <div class="manualInsert">
+    <div class="pageTitle">
+      <h1>Manual Activity</h1>
+      <button>Add Activity</button>
+      <button onclick="ActivityPage.loadAllActivities()">🔄</button>
+
+    </div>
     <form method="POST">
       <table border="0" cellspacing="0" cellpadding="2">
         <tbody>
           <tr>
             <td>Sportart</td>
             <td>
-              <select name ="Sportart">
+              <select name="Sportart">
                 <option value="Swim"> Swim </opoption>
                 <option value="Bike"> Bike </opoption>
                 <option value="Run"> Run </opoption>
@@ -62,11 +87,27 @@
                 <span class="format-example">(hh : mm : ss)</span>
               </div>
             </td>
-        </tr>
-          </tbody>
+          </tr>
+        </tbody>
       </table>
     </form>
     <!-- <input type ="submit"> -->
 
-  </body>
+    <table class="activityTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Name</th>
+          <th>Distance</th>
+          <th>Duration</th>
+          <th>Avg Speed</th>
+          <th>Calories</th>
+        </tr>
+      </thead>
+
+      <tbody id="idActivityTableBody"/>
+    </table>
+
+</body>
+
 </html>
