@@ -3,10 +3,40 @@
   <head>
     <meta charset="utf-8">
     <title>Activity</title>
+    <script src="./page-activity.js"> </script>
+    <link rel="stylesheet" href="./../styles/index.css">
+    <!-- <link rel="stylesheet" href="./../page-activity/page-activity.css"> -->
   </head>
   <body>
     <!-- manual Activity -->
-    <!-- <form class="mact" action="index.html" method="post"> -->
+    <div class="topBar">
+      <div class="topBarHeadline">
+        📈 Sport Dashboard
+      </div>
+      <div class="menu">
+        <div class="menuItem">
+          <a href="#/activity">
+            <span class="menuItem-icon">❤️</span>
+            <span class="menuItem-text">Activity</span>
+          </a>
+        </div>
+        <div class="menuItem">
+          <a href ="#/analytic">
+          <span class="menuItem-icon">🚴‍♂️</span>
+          <span class="menuItem-text">Analytic</span>
+        </a>
+        </div>
+        <div class="menuItem">
+          <a href ="#/plan">
+          <span class="menuItem-icon">🔍</span>
+          <span class="menuItem-text">Plan</span>
+        </a>
+        </div>
+      </div>
+    </div> <!--Topbar closed-->
+
+    <div class="manualInsert">
+    <h1>Manual Activity</h1>
     <form method="POST">
       <table border="0" cellspacing="0" cellpadding="2">
         <tbody>
@@ -21,9 +51,22 @@
               </select>
             </td>
           </tr>
+          <tr>
+            <td>Dauer</td>
+            <td>
+              <div id="duration" class="controls duration">
+                <input type="text" id="time-hour" class="input-mini" value="0" maxlength="2"> :
+                <input type="text" id="time-minute" class="input-mini" value="0" maxlength="2">
+                :
+                <input type="text" id="time-second" class="input-mini" value="0" maxlength="2">
+                <span class="format-example">(hh : mm : ss)</span>
+              </div>
+            </td>
+        </tr>
           </tbody>
       </table>
     </form>
     <!-- <input type ="submit"> -->
+
   </body>
 </html>
