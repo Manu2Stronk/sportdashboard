@@ -1,17 +1,26 @@
 class Plan {
-  constructor(buttonAddWorkout) {
-    this.dropdown = dropdown;
+  constructor() {
+    // this.dropdown = dropdown;
   }
+
   create(divWorkout){
-    console.log("create()");
+    console.log("plan.create()");
     console.log(divWorkout);
     divWorkout.style.display = "block";
   }
-  save(divWorkout, title){
 
-    console.log("title: " + title);
+  addWorkout(workouts, workout){
+    console.log("plan.addWorkout()");
+    workouts[Object.values(workout.id)] = workout;
+  }
+
+  order(){
+
+  }
+
+  save(divWorkout){
     // let workout = new Workout();
-    console.log("save()");
+    console.log("plan.save()");
     divWorkout.style.display = "none";
     // def div-Element
     let divElement = document.createElement("div");
@@ -25,7 +34,5 @@ class Plan {
     // add to dropdown
     dropdown.appendChild(divElement);
     divElement.appendChild(buttonElement);
-
-    return buttonElement;
   }
 }

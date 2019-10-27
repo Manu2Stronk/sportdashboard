@@ -11,6 +11,7 @@
   <script src="./../page-analytic/page-analytic.js"> </script>
   <!-- <script src="./../page-plan/page-plan.js"> </script> -->
   <script src="./plan.js"></script>
+  <script src="./workout.js"></script>
   <script type="text/javascript">
     window.addEventListener("load", () => {
       console.log("page-plan.html running");
@@ -18,17 +19,72 @@
       let dropdown = document.getElementById("dropdown");
       let divWorkout = document.getElementById("divWorkout");
 
-      let plan = new Plan(dropdown);
+      let plan = new Plan();
+      let workouts = new Array();
+      let workout = new Workout();
+      let id = 0;
+
+
+      console.log("plan: " + plan);
+
       buttonAddWorkout.addEventListener("click", () => {
         console.log("buttonAddWorkout clicked");
         let title = document.getElementById("workoutTitle").value;
         console.log("title:" + title);
         let buttonElement = plan.create(divWorkout);
-        console.log(buttonElement);
+
 
       });
+
       buttonSave.addEventListener("click", () => {
         console.log("buttonSave clicked");
+        // get Information from inputs
+        let title = document.getElementById("workoutTitle").value;
+        let date = document.getElementById("date").value;
+        let distance = "";
+        let duration = "";
+        try {
+          distance = document.getElementById("distance").value;
+        } catch {
+
+        }
+        try {
+          duration = document.getElementById("duration").value;
+        } catch {}
+        var radios = document.getElementsByName('radio');
+        let kindOfSport = "";
+        for (var i = 0, length = radios.length; i < length; i++) {
+          if (radios[i].checked) {
+            switch (i) {
+              case 0:
+                kindOfSport = "Bike";
+                break;
+              case 1:
+                kindOfSport = "Run";
+                break;
+              case 2:
+                kindOfSport = "Swim";
+                break;
+              case 3:
+                kindOfSport = "Athletics";
+                break;
+              default:
+                console.log("Radiogroup: nothing checked");
+            }
+            break;
+          }
+        }
+        let description = document.getElementById("discription").value;
+        // END of getting information from inputs
+
+        let workout = new Workout(id, title, date, distance, duration, kindOfSport, description);
+        id = id + 1;
+        console.log("workout: " + Object.values(workout));
+
+
+        plan.addWorkout(workouts, workout);
+        console.log("workouts: " + workouts);
+        plan.order(workouts);
         plan.save(divWorkout);
       });
     });
@@ -75,7 +131,7 @@
       <!-- <input type="button" class="buttonCloseWorkout" name="" value="x"> -->
       <div class="divTitleAndDate">
         <input type="text" name="Workout" value="" id="workoutTitle" class="workoutTitle" placeholder="Workout-Title">
-        <input type="date" class="dateclass">
+        <input type="date" class="dateclass" id="date">
       </div>
 
       <!-- Block with Distance -->
@@ -85,7 +141,7 @@
           <div class="textDistance">
             Distance
           </div>
-          <input type="number" name="" value="" placeholder="0km" class="inputDistance">
+          <input type="number" name="" value="" placeholder="0km" class="inputDistance" id="distance">
         </div>
         <input type="button" name="" value=">" class="buttonSwitchDD buttonSwitchRight">
       </div>
@@ -115,7 +171,7 @@
         </label>
       </div>
 
-      <input type="text" name="" placeholder="Discription" class="boxDiscription">
+      <input type="text" name="" placeholder="Discription" class="boxDiscription" id="discription">
 
       <input type="button" name="" value="💾Save" class="buttonSave" id="buttonSave">
 
