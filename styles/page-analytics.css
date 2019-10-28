@@ -16,12 +16,28 @@ body {
   margin-top: 50px;
   margin-left:10px;
   margin-right:10px;
-  font-size: 60px;
+  /* font-size: 60px;*/
   text-align: center;
+  /* box shadow bei allen seiten einfügen */
   box-shadow: 2px 2px 2px 1px gray;
 }
 
 .divAllEl {
   margin: auto;
   width: 90%;
+}
+
+.analyticalEmoji {
+  font-size: 60px;
+  text-align: center;
+}
+
+.analyticalHeader {
+  font-size: 20px;
+  text-align: center;
+}
+
+.analyticalResult {
+  font-size: 35px;
+  text-align: center;
 }
