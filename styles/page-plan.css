@@ -10,6 +10,7 @@
   margin: 0px auto;
   margin-top: 10px;
   border-radius: 20px;
+  box-shadow: 2px 2px 2px 1px gray;
 }
 
 .divWorkout {
@@ -21,6 +22,7 @@
   margin-top: 10px;
   border-radius: 20px;
   display: none;
+  box-shadow: 2px 2px 2px 1px gray;
 }
 
 .buttonAddWorkout {
@@ -113,7 +115,7 @@
   width: 200px;
 }
 
-.divDD{
+.divDD {
   width: 200px;
   display: inline;
 }
@@ -295,8 +297,7 @@
 }
 
 /* Discription Box */
-
-.boxDiscription{
+.boxDiscription {
   margin-left: 4.75%;
   margin-top: 20px;
   width: 90%;
@@ -305,7 +306,6 @@
 }
 
 /* Save Button */
-
 .buttonSave {
   background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
   background-color: white;

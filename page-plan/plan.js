@@ -11,7 +11,8 @@ class Plan {
 
   addWorkout(workouts, workout){
     console.log("plan.addWorkout()");
-    workouts[Object.values(workout.id)] = workout;
+
+
   }
 
   order(){
@@ -34,5 +35,9 @@ class Plan {
     // add to dropdown
     dropdown.appendChild(divElement);
     divElement.appendChild(buttonElement);
+  }
+
+  close(){
+
   }
 }
