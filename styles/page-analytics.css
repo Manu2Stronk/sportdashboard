@@ -28,16 +28,20 @@ body {
 }
 
 .analyticalEmoji {
-  font-size: 60px;
+  font-size: 85px;
   text-align: center;
 }
 
 .analyticalHeader {
-  font-size: 20px;
+  font-size: 30px;
   text-align: center;
 }
 
 .analyticalResult {
-  font-size: 35px;
+  font-size: 45px;
   text-align: center;
+}
+
+.divLabel {
+  margin-top: 15px;
 }
