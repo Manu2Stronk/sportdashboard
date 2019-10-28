@@ -18,7 +18,7 @@ class pageActivity{
      * @public
      */
     async loadAllActivities() {
-      //clear the table
+      //Clear the table
       var oActivityTable = document.getElementById("idActivityTableBody");
       while (oActivityTable.firstChild) {
         oActivityTable.removeChild(oActivityTable.firstChild);
@@ -71,6 +71,10 @@ class pageActivity{
       oModal.style.display = "none";
     }
 
+    /**
+     * Saves the activity and reloads the table
+     * @public
+     */
     onSaveNewActivity(oEvent) {
       oEvent.preventDefault(); //prevents default reload/redirect mechanic
 
@@ -96,11 +100,12 @@ class pageActivity{
         return false;
     };
 
-
-
-
     /* Formatter */
 
+    /**
+     * Format function for the date
+     * @protcted
+     */
     formatDate(oActivity) {
         var monthNames = [
           "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
@@ -111,15 +116,26 @@ class pageActivity{
         return monthNames[monthIndex] + " "+ day;
     }
 
-
+    /**
+     * Format function for the duration
+     * @protcted
+     */
     formatDuration(oActivity) {
       return oActivity.durationHH + ":" + oActivity.durationMM + ":" + oActivity.durationSS;
     }
 
+    /**
+     * Format function for the average Speed
+     * @protcted
+     */
     formatAverageSpeed(oActivity) {
       return this.calculateAverageSpeed(oActivity) + " km/h";
     }
 
+    /**
+     * Calculation function for the average speed
+     * @protcted
+     */
     calculateAverageSpeed(oActivity) {
       var iDuraitonInSeconds = oActivity.durationHH * 60 * 60 +
           oActivity.durationMM * 60 +
@@ -132,4 +148,5 @@ class pageActivity{
 
 ActivityPage = new pageActivity();
 
+// Timeout to load the data from the database -> duration ~68ms
 setTimeout(() => {ActivityPage.loadAllActivities()}, 2000);
