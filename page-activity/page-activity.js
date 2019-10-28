@@ -100,7 +100,6 @@ class pageActivity{
         return false;
     };
 
-
     /* Formatter */
 
     /**
