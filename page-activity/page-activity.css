@@ -55,6 +55,7 @@
   overflow: auto;
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
+  overflow: auto;
 }
 
 /* Modal Content */
@@ -69,8 +70,7 @@
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
-  animation-duration: 0.4s
-  border-bottom: 1px solid #ddd;
+  animation-duration: 0.4s;
 }
 
 /* Add Animation */
