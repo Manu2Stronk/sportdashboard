@@ -48,6 +48,7 @@ class pageActivity{
       sRow += "<td>" + this.formatDuration(oActivity) + "</td>";
       sRow += "<td>" + this.formatAverageSpeed(oActivity) + "</td>";
       sRow += "<td>" + oActivity.cal + " kcal" + "</td>";
+      sRow += "<td>" + oActivity.heart_rate + "</td>";
 
       temp.innerHTML = sRow;
       oActivityTable.appendChild(temp);
@@ -69,6 +70,11 @@ class pageActivity{
     closeAddActivityModal() {
       var oModal = document.getElementById("idAddActivityModal");
       oModal.style.display = "none";
+      oModal.keypress(function(e) {
+        if (e.keyCode === 27) {
+        oModal("#popdiv").fadeOut(500);
+    }
+});
     }
 
     /**
@@ -88,6 +94,8 @@ class pageActivity{
         durationHH: parseFloat(document.getElementById("idAddActivityForm-time-hour").value),
         durationMM: parseFloat(document.getElementById("idAddActivityForm-time-minute").value),
         durationSS: parseFloat(document.getElementById("idAddActivityForm-time-second").value),
+
+        heart_rate: parseInt(document.getElementById("idAddActivityForm-heartField").value),
       }
 
       console.log(oActivity);
