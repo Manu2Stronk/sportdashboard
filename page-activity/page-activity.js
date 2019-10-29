@@ -70,11 +70,6 @@ class pageActivity{
     closeAddActivityModal() {
       var oModal = document.getElementById("idAddActivityModal");
       oModal.style.display = "none";
-      oModal.keypress(function(e) {
-        if (e.keyCode === 27) {
-        oModal("#popdiv").fadeOut(500);
-    }
-});
     }
 
     /**
