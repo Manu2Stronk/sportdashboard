@@ -16,103 +16,60 @@
     window.addEventListener("load", () => {
       console.log("page-plan.html running");
 
-
-
-
-
       let buttonAddWorkout = document.getElementById("buttonAddWorkout");
       let dropdown = document.getElementById("dropdown");
       let divWorkout = document.getElementById("divWorkout");
+      let divListOfWorkouts = document.getElementById("divListOfWorkouts");
 
       let plan = new Plan();
       let workouts = new Array();
-      console.log("workouts_: " + Object.values(workouts));
       let workout = new Workout();
       let id = 0;
-
-      console.log("workouts: " + workouts.value);
-
-      console.log("plan: " + plan);
+      plan.getInputs();
+      plan.save(divWorkout, divListOfWorkouts, workouts);
 
       buttonAddWorkout.addEventListener("click", () => {
         console.log("buttonAddWorkout clicked");
-        let title = document.getElementById("workoutTitle").value;
-        console.log("title:" + title);
+        // let title = document.getElementById("workoutTitle").value;
+        // console.log("title:" + title);
         let buttonElement = plan.create(divWorkout);
-
-
       });
+
 
       buttonSave.addEventListener("click", () => {
         console.log("buttonSave clicked");
-
-        // get Information from inputs
-        let title = document.getElementById("workoutTitle").value;
-        let date = document.getElementById("date").value;
-        let distance = "";
-        let duration = "";
-        try {
-          distance = document.getElementById("distance").value;
-        } catch {
-
-        }
-        try {
-          duration = document.getElementById("duration").value;
-        } catch {}
-        var radios = document.getElementsByName('radio');
-        let kindOfSport = "";
-        for (var i = 0, length = radios.length; i < length; i++) {
-          if (radios[i].checked) {
-            switch (i) {
-              case 0:
-                kindOfSport = "Bike";
-                break;
-              case 1:
-                kindOfSport = "Run";
-                break;
-              case 2:
-                kindOfSport = "Swim";
-                break;
-              case 3:
-                kindOfSport = "Athletics";
-                break;
-              default:
-                console.log("Radiogroup: nothing checked");
-            }
-            break;
-          }
-        }
-        let description = document.getElementById("discription").value;
-        // END of getting information from inputs
-
+        let title = plan.getTitle();
+        let date = plan.getDate();
+        let distance = plan.getDistance();
+        let duration = plan.getDuration();
+        let kindOfSport = plan.getKindOfSprot();
+        let description = plan.getDescription();
         let workout = new Workout(id, title, date, distance, duration, kindOfSport, description);
         id = id + 1;
         console.log("workout: " + Object.values(workout));
-
-        workouts.push(workout);
-        for (var i = 0; i < workouts.length; i++) {
-          console.log("workouts: " + Object.values(Object.values(workouts[i])));
-        }
-
-
-        let testArray = new Array();
-        for (var i = 0; i < 10; i++) {
-          testArray.push(i);
-        }
-        console.log("testArray: " + Object.values(testArray));
-
-
+        plan.sortWorkouts(workouts);
         plan.addWorkout(workouts, workout);
 
-        // console.log("workouts: " + Object.values(workouts[0]));
 
-        plan.order(workouts);
-        plan.save(divWorkout);
+        // console.log("workoutLength: " + Object.values(workout.length));
 
-        buttonCloseWorkout.addEventListener("click", () => {
-          console.log("page-plan.html: buttonCloseWorkout clicked");
-          plan.close();
-        });
+        // if (workouts.length !== 0) {
+        //     let workoutElement = document.getElementById("workoutElement");
+        //     plan.clearAll(workoutElement);
+        // }
+
+        plan.save(divWorkout, divListOfWorkouts, workouts, workout);
+
+        for (var i = 0; i < workouts.length; i++) {
+          console.log("workouts_sort: " + Object.values(Object.values(workouts[i])));
+        }
+
+
+
+        // buttonCloseWorkout.addEventListener("click", () => {
+        //   console.log("page-plan.html: buttonCloseWorkout clicked");
+        //   plan.close();
+        // });
       });
 
 
@@ -204,6 +161,8 @@
       <input type="text" name="" placeholder="Discription" class="boxDiscription" id="discription">
 
       <input type="button" name="" value="💾Save" class="buttonSave" id="buttonSave">
+    </div>
+    <div class="divWorkout" id="divListOfWorkouts">
 
     </div>
   </div>
