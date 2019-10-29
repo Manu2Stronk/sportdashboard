@@ -26,7 +26,7 @@
       let workout = new Workout();
       let id = 0;
       plan.getInputs();
-      plan.save(divWorkout, divListOfWorkouts, workouts);
+      // plan.save(divWorkout, divListOfWorkouts, workouts, workout);
 
       buttonAddWorkout.addEventListener("click", () => {
         console.log("buttonAddWorkout clicked");
@@ -111,60 +111,60 @@
   </div>
 
   <input type="button" name="" class="buttonAddWorkout" id="buttonAddWorkout" value="➕Add Workout">
+  <input type="button" name="" class="buttonAddWorkout" value="Clear All">
+  <div class="divWorkout" id="divWorkout">
+    <!-- <input type="button" class="buttonCloseWorkout" name="" value="x"> -->
+    <div class="divTitleAndDate">
+      <input type="text" name="Workout" value="" id="workoutTitle" class="workoutTitle" placeholder="Workout-Title">
+      <input type="date" class="dateclass" id="date">
+    </div>
+
+    <!-- Block with Distance -->
+    <div class="divBlock">
+      <input type="button" name="" value="<" class="buttonSwitchDD buttonSwitchLeft">
+      <div class="divDD">
+        <div class="textDistance">
+          Distance
+        </div>
+        <input type="number" name="" value="" placeholder="0km" class="inputDistance" id="distance">
+      </div>
+      <input type="button" name="" value=">" class="buttonSwitchDD buttonSwitchRight">
+    </div>
+
+
+    <!-- Radiogroup -->
+    <div class="control-group">
+      <label class="control control-radio">
+        🚴‍Bike
+        <input type="radio" name="radio" checked="checked" />
+        <div class="control_indicator"></div>
+      </label>
+      <label class="control control-radio">
+        🏃Run
+        <input type="radio" name="radio" />
+        <div class="control_indicator"></div>
+      </label>
+      <label class="control control-radio">
+        🏊Swim
+        <input type="radio" name="radio" />
+        <div class="control_indicator"></div>
+      </label>
+      <label class="control control-radio">
+        🏋️Athletics
+        <input type="radio" name="radio" />
+        <div class="control_indicator"></div>
+      </label>
+    </div>
+
+    <input type="text" name="" placeholder="Discription" class="boxDiscription" id="discription">
+
+    <input type="button" name="" value="💾Save" class="buttonSave" id="buttonSave">
+  </div>
+
   <!-- Start of Dropdown  -->
   <div class="dropdown" id="dropdown">
 
-    <div class="divWorkout" id="divWorkout">
-      <!-- <input type="button" class="buttonCloseWorkout" name="" value="x"> -->
-      <div class="divTitleAndDate">
-        <input type="text" name="Workout" value="" id="workoutTitle" class="workoutTitle" placeholder="Workout-Title">
-        <input type="date" class="dateclass" id="date">
-      </div>
 
-      <!-- Block with Distance -->
-      <div class="divBlock">
-        <input type="button" name="" value="<" class="buttonSwitchDD buttonSwitchLeft">
-        <div class="divDD">
-          <div class="textDistance">
-            Distance
-          </div>
-          <input type="number" name="" value="" placeholder="0km" class="inputDistance" id="distance">
-        </div>
-        <input type="button" name="" value=">" class="buttonSwitchDD buttonSwitchRight">
-      </div>
-
-
-      <!-- Radiogroup -->
-      <div class="control-group">
-        <label class="control control-radio">
-          🚴‍Bike
-          <input type="radio" name="radio" checked="checked" />
-          <div class="control_indicator"></div>
-        </label>
-        <label class="control control-radio">
-          🏃Run
-          <input type="radio" name="radio" />
-          <div class="control_indicator"></div>
-        </label>
-        <label class="control control-radio">
-          🏊Swim
-          <input type="radio" name="radio" />
-          <div class="control_indicator"></div>
-        </label>
-        <label class="control control-radio">
-          🏋️Athletics
-          <input type="radio" name="radio" />
-          <div class="control_indicator"></div>
-        </label>
-      </div>
-
-      <input type="text" name="" placeholder="Discription" class="boxDiscription" id="discription">
-
-      <input type="button" name="" value="💾Save" class="buttonSave" id="buttonSave">
-    </div>
-    <div class="divWorkout" id="divListOfWorkouts">
-
-    </div>
   </div>
 
 </body>
