@@ -21,7 +21,6 @@ async loadAllActivities() {
   oQuerySnapshot.docs.forEach((oDocument) => {
     var oActivity = oDocument.data();
     this.getValues(oActivity);
-    var calories
   })
 }
 getValues(oActivity){
