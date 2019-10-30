@@ -12,6 +12,8 @@ class Plan {
   change(){
     let lableDistance = document.getElementById("test");
     let inputDistance = document.getElementById("distance");
+
+
   }
 
   addWorkout(workouts, workout) {
