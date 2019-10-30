@@ -156,4 +156,4 @@ class pageActivity{
 ActivityPage = new pageActivity();
 
 // Timeout to load the data from the database -> duration ~68ms
-setTimeout(() => {ActivityPage.loadAllActivities()}, 2000);
+//setTimeout(() => {ActivityPage.loadAllActivities()}, 2000);
