@@ -35,7 +35,6 @@
         let buttonElement = plan.create(divWorkout);
       });
 
-
       buttonSave.addEventListener("click", () => {
         console.log("buttonSave clicked");
         let title = plan.getTitle();
@@ -47,32 +46,12 @@
         let workout = new Workout(id, title, date, distance, duration, kindOfSport, description);
         id = id + 1;
         console.log("workout: " + Object.values(workout));
-        plan.sortWorkouts(workouts);
+
         plan.addWorkout(workouts, workout);
+        plan.sortWorkouts(workouts);
+        plan.save(divWorkout, divListOfWorkouts, workouts, workout, dropdown);
 
-
-        // console.log("workoutLength: " + Object.values(workout.length));
-
-        // if (workouts.length !== 0) {
-        //     let workoutElement = document.getElementById("workoutElement");
-        //     plan.clearAll(workoutElement);
-        // }
-
-        plan.save(divWorkout, divListOfWorkouts, workouts, workout);
-
-        for (var i = 0; i < workouts.length; i++) {
-          console.log("workouts_sort: " + Object.values(Object.values(workouts[i])));
-        }
-
-
-
-        // buttonCloseWorkout.addEventListener("click", () => {
-        //   console.log("page-plan.html: buttonCloseWorkout clicked");
-        //   plan.close();
-        // });
       });
-
-
     });
   </script>
   <!-- End of Scripts -->
@@ -111,7 +90,6 @@
   </div>
 
   <input type="button" name="" class="buttonAddWorkout" id="buttonAddWorkout" value="➕Add Workout">
-  <input type="button" name="" class="buttonAddWorkout" value="Clear All">
   <div class="divWorkout" id="divWorkout">
     <!-- <input type="button" class="buttonCloseWorkout" name="" value="x"> -->
     <div class="divTitleAndDate">
@@ -163,7 +141,6 @@
 
   <!-- Start of Dropdown  -->
   <div class="dropdown" id="dropdown">
-
 
   </div>
 

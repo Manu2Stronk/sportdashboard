@@ -23,7 +23,7 @@
 }
 
 .inputGeneral{
-    background-color:;
+    background-color:white;
     border: none;
     width: 200px;
     height: 30px;
@@ -47,7 +47,15 @@
 }
 
 
-.inputDistance {}
+.inputDistance {
+  .inputDistance {
+  display: flex;
+  font-size: 20px;
+  width: calc(100% - 40px);
+  margin-left: 20px;
+  text-align: center;
+}
+}
 
 .inputDuration {}
 
