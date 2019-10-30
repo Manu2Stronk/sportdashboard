@@ -9,6 +9,11 @@ class Plan {
     divWorkout.style.display = "block";
   }
 
+  change(){
+    let lableDistance = document.getElementById("test");
+    let inputDistance = document.getElementById("distance");
+  }
+
   addWorkout(workouts, workout) {
     console.log("plan.addWorkout()");
     workouts.push(workout);
@@ -97,45 +102,47 @@ class Plan {
     }
   }
 
-  getInputs() {
-    // get Information from inputs
-    let title = document.getElementById("workoutTitle").value;
-    let date = document.getElementById("date").value;
-    let distance = "";
-    let duration = "";
-    try {
-      distance = document.getElementById("distance").value;
-    } catch {
+  // getInputs() {
+  //   // get Information from inputs
+  //   let title = document.getElementById("workoutTitle").value;
+  //   let date = document.getElementById("date").value;
+  //   let distance = "";
+  //   let duration = "";
+  //   try {
+  //     distance = document.getElementById("distance").value;
+  //   } catch {
+  //
+  //   }
+  //   try {
+  //     duration = document.getElementById("duration").value;
+  //   } catch {}
+  //   var radios = document.getElementsByName('radio');
+  //   let kindOfSport = "";
+  //   for (var i = 0, length = radios.length; i < length; i++) {
+  //     if (radios[i].checked) {
+  //       switch (i) {
+  //         case 0:
+  //           kindOfSport = "Bike";
+  //           break;
+  //         case 1:
+  //           kindOfSport = "Run";
+  //           break;
+  //         case 2:
+  //           kindOfSport = "Swim";
+  //           break;
+  //         case 3:
+  //           kindOfSport = "Athletics";
+  //           break;
+  //         default:
+  //           console.log("Radiogroup: nothing checked");
+  //       }
+  //       break;
+  //     }
+  //   }
+  //   let description = document.getElementById("discription").value;
+  // }
 
-    }
-    try {
-      duration = document.getElementById("duration").value;
-    } catch {}
-    var radios = document.getElementsByName('radio');
-    let kindOfSport = "";
-    for (var i = 0, length = radios.length; i < length; i++) {
-      if (radios[i].checked) {
-        switch (i) {
-          case 0:
-            kindOfSport = "Bike";
-            break;
-          case 1:
-            kindOfSport = "Run";
-            break;
-          case 2:
-            kindOfSport = "Swim";
-            break;
-          case 3:
-            kindOfSport = "Athletics";
-            break;
-          default:
-            console.log("Radiogroup: nothing checked");
-        }
-        break;
-      }
-    }
-    let description = document.getElementById("discription").value;
-  }
+
   getTitle() {
     return document.getElementById("workoutTitle").value;
   }
