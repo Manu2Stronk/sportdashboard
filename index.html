@@ -11,10 +11,13 @@
   <script src="./page-activity/page-activity.js"> </script>
   <script src="./page-analytic/page-analytic.js"> </script>
   <script src="./page-plan/page-plan.js"> </script>
-  <link rel="stylesheet" href="./styles/index.css">
 
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./styles/index.css">
   <link rel="stylesheet" href="./page-activity/page-activity.css">
 
+  <!-- Script for Database -->
   <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
   <script>
     //web app's Firebase configuration
@@ -31,6 +34,7 @@
     firebase.initializeApp(firebaseConfig);
   </script>
 
+  <!-- Script for Single Page -->
   <script type="text/javascript">
     let pages = [{
         url: "/activity",
