@@ -13,9 +13,11 @@
   <script src="./page-plan/page-plan.js"> </script>
 
 
+
   <!-- Styles -->
   <link rel="stylesheet" href="./styles/index.css">
   <link rel="stylesheet" href="./page-activity/page-activity.css">
+  <link rel="stylesheet" href="./styles/page-plan.css">
 
   <!-- Script for Database -->
   <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
@@ -57,6 +59,54 @@
       let app = new App(pages);
       app.run();
       console.log("index: App running");
+    });
+  </script>
+
+  <script src="./plan.js"></script>
+  <script src="./workout.js"></script>
+  <script type="text/javascript">
+    window.addEventListener("load", () => {
+      console.log("page-plan.html running");
+      let buttonAddWorkout = document.getElementById("buttonAddWorkout");
+      let dropdown = document.getElementById("dropdown");
+      let divWorkout = document.getElementById("divWorkout");
+      let divListOfWorkouts = document.getElementById("divListOfWorkouts");
+
+      let plan = new Plan();
+      let workouts = new Array();
+      let workout = new Workout();
+      let id = 0;
+      // plan.getInputs();
+      // plan.save(divWorkout, divListOfWorkouts, workouts, workout);
+
+      buttonAddWorkout.addEventListener("click", () => {
+        console.log("buttonAddWorkout clicked");
+        // let title = document.getElementById("workoutTitle").value;
+        // console.log("title:" + title);
+        let buttonElement = plan.create(divWorkout);
+      });
+
+      buttonSave.addEventListener("click", () => {
+        console.log("buttonSave clicked");
+        let title = plan.getTitle();
+        let date = plan.getDate();
+        let distance = plan.getDistance();
+        let duration = plan.getDuration();
+        let kindOfSport = plan.getKindOfSprot();
+        let description = plan.getDescription();
+        let workout = new Workout(id, title, date, distance, duration, kindOfSport, description);
+        id = id + 1;
+        console.log("workout: " + Object.values(workout));
+
+        plan.addWorkout(workouts, workout);
+        plan.sortWorkouts(workouts);
+        plan.save(divWorkout, divListOfWorkouts, workouts, workout, dropdown);
+      });
+
+      buttonChange.addEventListener("click", () => {
+        plan.change();
+      });
+
     });
   </script>
   <!-- End of Scripts -->
