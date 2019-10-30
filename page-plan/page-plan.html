@@ -15,7 +15,6 @@
   <script type="text/javascript">
     window.addEventListener("load", () => {
       console.log("page-plan.html running");
-
       let buttonAddWorkout = document.getElementById("buttonAddWorkout");
       let dropdown = document.getElementById("dropdown");
       let divWorkout = document.getElementById("divWorkout");
@@ -25,7 +24,7 @@
       let workouts = new Array();
       let workout = new Workout();
       let id = 0;
-      plan.getInputs();
+      // plan.getInputs();
       // plan.save(divWorkout, divListOfWorkouts, workouts, workout);
 
       buttonAddWorkout.addEventListener("click", () => {
@@ -50,10 +49,15 @@
         plan.addWorkout(workouts, workout);
         plan.sortWorkouts(workouts);
         plan.save(divWorkout, divListOfWorkouts, workouts, workout, dropdown);
-
       });
+
+      buttonChange.addEventListener("click", () => {
+        plan.change();
+      });
+
     });
   </script>
+
   <!-- End of Scripts -->
   <!-- Link Stylesheets -->
   <link rel="stylesheet" href="./../styles/index.css">
@@ -99,14 +103,14 @@
 
     <!-- Block with Distance -->
     <div class="divBlock">
-      <input type="button" name="" value="<" class="buttonSwitchDD buttonSwitchLeft">
+      <input type="button" name="" value="<" class="buttonSwitchDD buttonSwitchLeft" id="buttonChange">
       <div class="divDD">
-        <div class="textDistance">
+        <div class="textDistance" id= "textDistance">
           Distance
         </div>
         <input type="number" name="" value="" placeholder="0km" class="inputDistance" id="distance">
       </div>
-      <input type="button" name="" value=">" class="buttonSwitchDD buttonSwitchRight">
+      <input type="button" name="" value=">" class="buttonSwitchDD buttonSwitchRight" id="buttonChange">
     </div>
 
 
