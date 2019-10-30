@@ -21,9 +21,10 @@ async loadAllActivities() {
   oQuerySnapshot.docs.forEach((oDocument) => {
     var oActivity = oDocument.data();
     this.getValues(oActivity);
+
   })
 }
-getValues(oActivity){
+getValues(oActivity, temp){
   var oLabelHeart = document.getElementById('heartrateID'),
   sLabelHeart = oActivity.heart_rate;
   oLabelHeart.innerHTML = sLabelHeart;
