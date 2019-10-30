@@ -5,6 +5,22 @@
     <title>Analytic</title>
     <link rel="stylesheet" type="text/css" href="./../styles/index.css">
     <link rel="stylesheet" type="text/css" href="./../styles/page-analytics.css">
+    <script src="./page-analytic.js" charset="utf-8"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+    <script>
+      //web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBjniuB_NbZDWLJWoloYlET3Hih14CldPM",
+        authDomain: "sport-dashboard.firebaseapp.com",
+        databaseURL: "https://sport-dashboard.firebaseio.com",
+        projectId: "sport-dashboard",
+        storageBucket: "sport-dashboard.appspot.com",
+        messagingSenderId: "888929216804",
+        appId: "1:888929216804:web:23bc334f01d27a1c89ebb1"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
   </head>
 
   <body>
@@ -43,56 +59,56 @@
             <div class="divLabel">
             <label for="avg. Heartrate" class="analyticalEmoji">❤️</label><br>
             <label for="avg. Heartrate" class="analyticalHeader">avg. Heartrate</label><br>
-            <label for="avg. Heartrate" class="analyticalResult">147</label>
+            <label for="avg. Heartrate" class="analyticalResult" id="heartrateID"></label>
             </div>
           </div>
           <div class="flex-item" id="flex-item2">
               <div class="divLabel">
             <label for="duration" class="analyticalEmoji">⏲️</label><br>
             <label for="duration" class="analyticalHeader">duration</label><br>
-            <label for="duration" class="analyticalResult">0,5 std</label>
+            <label for="duration" class="analyticalResult" id="durationID"></label>
           </div>
           </div>
           <div class="flex-item" id="flex-item3">
             <div class="divLabel">
             <label for="distance" class="analyticalEmoji">🏃</label><br>
             <label for="distance" class="analyticalHeader">distance</label><br>
-            <label for="distance" class="analyticalResult">5 km</label>
+            <label for="distance" class="analyticalResult" id="distanceID"></label>
           </div>
           </div>
           <div class="flex-item" id="flex-item4">
             <div class="divLabel">
               <label for="avg. speed" class="analyticalEmoji">🏁</label><br>
               <label for="avg. speed" class="analyticalHeader">avg. speed</label><br>
-              <label for="avg. speed" class="analyticalResult">10 km/h</label>
+              <label for="avg. speed" class="analyticalResult" id=""></label>
             </div>
           </div>
           <div class="flex-item" id="flex-item5">
             <div class="divLabel">
               <label for="calories" class="analyticalEmoji">🏋</label><br>
               <label for="calories" class="analyticalHeader">calories</label><br>
-              <label for="calories" class="analyticalResult">2456 kcal</label>
+              <label for="calories" class="analyticalResult" id="calorieID"></label>
             </div>
           </div>
           <div class="flex-item" id="flex-item6">
             <div class="divLabel">
               <label for="weekly duration" class="analyticalEmoji">📅</label><br>
               <label for="weekly duration" class="analyticalHeader">weekly duration</label><br>
-              <label for="weekly duration" class="analyticalResult">7 std</label>
+              <label for="weekly duration" class="analyticalResult" id="wklDurationID"></label>
             </div>
           </div>
           <div class="flex-item" id="flex-item7">
             <div class="divLabel">
               <label for="weekly distance" class="analyticalEmoji">📅</label><br>
               <label for="weekly distance" class="analyticalHeader">weekly distance</label><br>
-              <label for="weekly distance" class="analyticalResult">45 km</label>
+              <label for="weekly distance" class="analyticalResult" id="wklDistanceID"></label>
             </div>
           </div>
           <div class="flex-item" id="flex-item8">
             <div class="divLabel">
               <label for="leaderboard" class="analyticalEmoji">🏅</label><br>
               <label for="leaderboard" class="analyticalHeader">leaderboard</label><br>
-              <label for="leaderboard" class="analyticalResult">1st</label>
+              <label for="leaderboard" class="analyticalResult"></label>
             </div>
           </div>
         </div>
