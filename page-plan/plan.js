@@ -47,17 +47,41 @@ class Plan {
     buttonElement.id = "buttonCloseWorkout";
 
     let titleElement = document.createElement("input");
-    titleElement.className += "inputTitle";
+    titleElement.className += "inputTitle inputGeneral";
     titleElement.type = "text";
     titleElement.disabled = true;
-    titleElement.id = "titleElement";
-    titleElement.value += "test";
-    //document.getElementById("titleElement").innerHTML = "test";
+    titleElement.value += Object.values(workout.title);
+
+    let dateElement = document.createElement("input");
+    dateElement.className += "inputDate inputGeneral";
+    dateElement.type = "text";
+    dateElement.disabled = true;
+    dateElement.value += Object.values(workout.date) + ":";
+
+    let distancElement = document.createElement("input");
+    distancElement.className += "inputDistance inputGeneral";
+    distancElement.type = "text";
+    distancElement.disabled = true;
+    distancElement.value += Object.values(workout.distance) + "km / " + Object.values(workout.duration) + "min" ;
+
+
+    let kindOfSportElement = document.createElement("input");
+    kindOfSportElement.className += "inputKindOfSport inputGeneral";
+    kindOfSportElement.type = "text";
+    kindOfSportElement.disabled = true;
+    kindOfSportElement.value += Object.values(workout.kindOfSport);
+
+    let lineElement = document.createElement("hr");
+
 
     // add to dropdown
     dropdown.appendChild(divElement);
     divElement.appendChild(buttonElement);
+    divElement.appendChild(dateElement);
+    divElement.appendChild(lineElement);
     divElement.appendChild(titleElement);
+    divElement.appendChild(distancElement);
+
 
     buttonElement.addEventListener("click", () => {
       divElement.parentNode.removeChild(divElement);
