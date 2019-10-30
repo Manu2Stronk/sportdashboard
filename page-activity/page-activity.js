@@ -10,7 +10,8 @@ class pageActivity{
     }
     this._app.setPageContent(htmlContent);
 
-    this.loadAllActivities();
+    setTimeout(() => {this.loadAllActivities()}, 2000);
+    //this.loadAllActivities();
   }
 
     /**
@@ -28,7 +29,6 @@ class pageActivity{
       var oQuerySnapshot = await firebase.firestore().collection("activities").get();
       oQuerySnapshot.docs.forEach((oDocument) => {
         var oActivity = oDocument.data();
-        //console.log(oActivity);
         this.renderActivity(oActivity);
       })
     }
@@ -102,6 +102,10 @@ class pageActivity{
 
         return false;
     };
+
+    // onDetail{
+    //
+    // };
 
     /* Formatter */
 

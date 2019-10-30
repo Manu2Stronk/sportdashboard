@@ -11,9 +11,16 @@
   <script src="./page-activity/page-activity.js"> </script>
   <script src="./page-analytic/page-analytic.js"> </script>
   <script src="./page-plan/page-plan.js"> </script>
+
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./styles/index.css">
+  <link rel="stylesheet" href="./page-activity/page-activity.css">
+
+  <!-- Script for Database -->
   <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
   <script>
-    // Your web app's Firebase configuration
+    //web app's Firebase configuration
     var firebaseConfig = {
       apiKey: "AIzaSyBjniuB_NbZDWLJWoloYlET3Hih14CldPM",
       authDomain: "sport-dashboard.firebaseapp.com",
@@ -27,6 +34,7 @@
     firebase.initializeApp(firebaseConfig);
   </script>
 
+  <!-- Script for Single Page -->
   <script type="text/javascript">
     let pages = [{
         url: "/activity",
@@ -52,7 +60,6 @@
     });
   </script>
   <!-- End of Scripts -->
-  <link rel="stylesheet" href="./styles/index.css">
 </head>
 
 <!-- Body starts here -->
@@ -82,5 +89,9 @@
       </div>
     </div>
   </div>
+  <div id="content">
+    <!-- Hier -->
+  </div>
+
 </body>
 </html>

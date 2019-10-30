@@ -22,13 +22,46 @@
   float: right;
 }
 
-.inputTitle {
-  float: left;
-  width: 200px;
-  display: block;
-  height: 30px;
-  background-color: blue;
+.inputGeneral{
+    background-color:white;
+    border: none;
+    width: 200px;
+    height: 30px;
 }
+
+.inputTitle {
+  width: calc(100% - 40px);
+  text-align: center;
+  font-size: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+
+}
+
+.inputDate {
+  display: inline;
+  padding-top: 10px;
+  margin-left: 20px;
+  font-size: 25px;
+  display: block;
+}
+
+
+.inputDistance {
+  .inputDistance {
+  display: flex;
+  font-size: 20px;
+  width: calc(100% - 40px);
+  margin-left: 20px;
+  text-align: center;
+}
+}
+
+.inputDuration {}
+
+.inputKindOfSport {}
+
+.inputDiscription {}
 
 .divWorkout {
   background-color: white;
