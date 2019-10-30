@@ -10,7 +10,7 @@ class Plan {
   }
 
   change(){
-    let lableDistance = document.getElementById("textDistance");
+    let lableDistance = document.getElementById("test");
     let inputDistance = document.getElementById("distance");
   }
 
