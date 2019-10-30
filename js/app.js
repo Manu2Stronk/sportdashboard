@@ -15,7 +15,7 @@ class App{
     let matches = null;
 
     let page = this._pages.find(p => matches = pageUrl.match(p.url));
-    location.href = ("." + page.resource);
+    //location.href = ("." + page.resource);
 
     this.currentPageObj = new page.klasse(this);
     this.currentPageObj.show();
