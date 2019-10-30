@@ -28,70 +28,73 @@ class Plan {
         }
       }
     }
+    for (var i = 0; i < workouts.length; i++) {
+      console.log("workouts_sort: " + Object.values(Object.values(workouts[i])));
+    }
   }
 
-
-  save(divWorkout, divListOfWorkouts, workouts, workout) {
+  save(divWorkout, divListOfWorkouts, workouts, workout, dropdown) {
     // let workout = new Workout();
     console.log("plan.save()");
+
+    //delete All Elements of dropdown
+    while (dropdown.firstChild) {
+      dropdown.removeChild(dropdown.firstChild);
+    }
+
     divWorkout.style.display = "none";
-    // def div-Element
-    let divElement = document.createElement("div");
-    divElement.className += "workoutElement";
-    divElement.id = "workoutElement";
-    // def buttonElement
-    let buttonElement = document.createElement("input");
-    buttonElement.className += "buttonCloseWorkout";
-    buttonElement.value += "x";
-    buttonElement.type = "button";
-    buttonElement.id = "buttonCloseWorkout";
+    for (var i = 0; i < workouts.length; i++) {
+      // def div-Element
+      let divElement = document.createElement("div");
+      divElement.className += "workoutElement";
+      divElement.id = "workoutElement";
+      // def buttonElement
+      let buttonElement = document.createElement("input");
+      buttonElement.className += "buttonCloseWorkout";
+      buttonElement.value += "x";
+      buttonElement.type = "button";
+      buttonElement.id = "buttonCloseWorkout";
 
-    let titleElement = document.createElement("input");
-    titleElement.className += "inputTitle inputGeneral";
-    titleElement.type = "text";
-    titleElement.disabled = true;
-    titleElement.value += Object.values(workout.title);
+      let titleElement = document.createElement("input");
+      titleElement.className += "inputTitle inputGeneral";
+      titleElement.type = "text";
+      titleElement.disabled = true;
+      titleElement.value += Object.values(workout.title);
 
-    let dateElement = document.createElement("input");
-    dateElement.className += "inputDate inputGeneral";
-    dateElement.type = "text";
-    dateElement.disabled = true;
-    dateElement.value += Object.values(workout.date) + ":";
+      let dateElement = document.createElement("input");
+      dateElement.className += "inputDate inputGeneral";
+      dateElement.type = "text";
+      dateElement.disabled = true;
+      dateElement.value += Object.values(Object.values(workouts[i].date)) + ":";
 
-    let distancElement = document.createElement("input");
-    distancElement.className += "inputDistance inputGeneral";
-    distancElement.type = "text";
-    distancElement.disabled = true;
-    distancElement.value += Object.values(workout.distance) + "km / " + Object.values(workout.duration) + "min" ;
+      let distancElement = document.createElement("input");
+      let distanceValue = "";
 
+      distanceValue = distanceValue + Object.values(workout.distance) + "km / " + Object.values(workout.duration) + "min";
 
-    let kindOfSportElement = document.createElement("input");
-    kindOfSportElement.className += "inputKindOfSport inputGeneral";
-    kindOfSportElement.type = "text";
-    kindOfSportElement.disabled = true;
-    kindOfSportElement.value += Object.values(workout.kindOfSport);
+      distancElement.className += "inputDistance inputGeneral";
+      distancElement.type = "text";
+      distancElement.disabled = true;
+      distancElement.value += distanceValue;
 
-    let lineElement = document.createElement("hr");
+      let lineElement = document.createElement("hr");
 
+      // add to dropdown
+      dropdown.appendChild(divElement);
+      divElement.appendChild(buttonElement);
+      divElement.appendChild(dateElement);
+      divElement.appendChild(lineElement);
+      divElement.appendChild(titleElement);
+      divElement.appendChild(distancElement);
 
-    // add to dropdown
-    dropdown.appendChild(divElement);
-    divElement.appendChild(buttonElement);
-    divElement.appendChild(dateElement);
-    divElement.appendChild(lineElement);
-    divElement.appendChild(titleElement);
-    divElement.appendChild(distancElement);
-
-
-    buttonElement.addEventListener("click", () => {
-      divElement.parentNode.removeChild(divElement);
-      workouts.splice(workouts.indexOf(workout), 1);
-      for (var i = 0; i < workouts.length; i++) {
-        console.log("workouts_delete: " + Object.values(Object.values(workouts[i])));
-      }
-    });
-
-
+      buttonElement.addEventListener("click", () => {
+        divElement.parentNode.removeChild(divElement);
+        workouts.splice(workouts.indexOf(workout), 1);
+        for (var i = 0; i < workouts.length; i++) {
+          console.log("workouts_delete: " + Object.values(Object.values(workouts[i])));
+        }
+      });
+    }
   }
 
   getInputs() {
