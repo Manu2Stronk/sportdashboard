@@ -9,10 +9,24 @@ class Plan {
     divWorkout.style.display = "block";
   }
 
-  change(){
-    let lableDistance = document.getElementById("test");
-    let inputDistance = document.getElementById("distance");
+  change() {
+    console.log("plan.change()");
+    let textDistance = document.getElementById("textDistance");
 
+    if (document.getElementById("distance") !== "duration") {
+      console.log("if");
+      let inputDistance = document.getElementById("distance");
+      inputDistance.setAttribute("id" , "duration");
+      textDistance.innerHTML = "Duration";
+      // inputDistance.placeholder = "0min";
+
+    } else {
+      console.log("else");
+      let inputDuration = document.getElementById("duration");
+      inputDuration.setAttribute("id", "distance");
+      textDistance.innerHTML = "Distance";
+      // inputDistance.placeholder = "0km";
+    }
 
   }
 
@@ -66,23 +80,21 @@ class Plan {
       titleElement.className += "inputTitle inputGeneral";
       titleElement.type = "text";
       titleElement.disabled = true;
-      let titleValue = Object.values(workout.title);
-      console.log("titleValue: " + titleValue);
-      let placeholder = this.arrayToString(titleValue);
-      console.log("placehoder: " + placeholder);
+      let inputValue = Object.values(Object.values(workouts[i].title));
+      let placeholder = this.arrayToString(inputValue);
       titleElement.value += placeholder;
 
       let dateElement = document.createElement("input");
       dateElement.className += "inputDate inputGeneral";
       dateElement.type = "text";
       dateElement.disabled = true;
-      dateElement.value += Object.values(Object.values(workouts[i].date)) + ":";
+      inputValue = Object.values(Object.values(workouts[i].date));
+      placeholder = this.arrayToString(inputValue);
+      dateElement.value += placeholder + ":";
 
       let distancElement = document.createElement("input");
       let distanceValue = "";
-
-      distanceValue = distanceValue + Object.values(workout.distance) + "km / " + Object.values(workout.duration) + "min";
-
+      distanceValue = this.arrayToString(Object.values(workouts[i].distance)) + "km / " + this.arrayToString(Object.values(workouts[i].duration)) + "min";
       distancElement.className += "inputDistance inputGeneral";
       distancElement.type = "text";
       distancElement.disabled = true;
@@ -163,12 +175,11 @@ class Plan {
     return document.getElementById("discription").value;
   }
 
-  arrayToString(array){
+  arrayToString(array) {
     let string = "";
     for (var i = 0; i < array.length; i++) {
       string = string + array[i];
     }
-    console.log("string: " + string);
     return "" + string;
   }
 
