@@ -66,7 +66,11 @@ class Plan {
       titleElement.className += "inputTitle inputGeneral";
       titleElement.type = "text";
       titleElement.disabled = true;
-      titleElement.value += Object.values(workout.title);
+      let titleValue = Object.values(workout.title);
+      console.log("titleValue: " + titleValue);
+      let placeholder = this.arrayToString(titleValue);
+      console.log("placehoder: " + placeholder);
+      titleElement.value += placeholder;
 
       let dateElement = document.createElement("input");
       dateElement.className += "inputDate inputGeneral";
@@ -103,47 +107,6 @@ class Plan {
       });
     }
   }
-
-  // getInputs() {
-  //   // get Information from inputs
-  //   let title = document.getElementById("workoutTitle").value;
-  //   let date = document.getElementById("date").value;
-  //   let distance = "";
-  //   let duration = "";
-  //   try {
-  //     distance = document.getElementById("distance").value;
-  //   } catch {
-  //
-  //   }
-  //   try {
-  //     duration = document.getElementById("duration").value;
-  //   } catch {}
-  //   var radios = document.getElementsByName('radio');
-  //   let kindOfSport = "";
-  //   for (var i = 0, length = radios.length; i < length; i++) {
-  //     if (radios[i].checked) {
-  //       switch (i) {
-  //         case 0:
-  //           kindOfSport = "Bike";
-  //           break;
-  //         case 1:
-  //           kindOfSport = "Run";
-  //           break;
-  //         case 2:
-  //           kindOfSport = "Swim";
-  //           break;
-  //         case 3:
-  //           kindOfSport = "Athletics";
-  //           break;
-  //         default:
-  //           console.log("Radiogroup: nothing checked");
-  //       }
-  //       break;
-  //     }
-  //   }
-  //   let description = document.getElementById("discription").value;
-  // }
-
 
   getTitle() {
     return document.getElementById("workoutTitle").value;
@@ -199,4 +162,14 @@ class Plan {
   getDescription() {
     return document.getElementById("discription").value;
   }
+
+  arrayToString(array){
+    let string = "";
+    for (var i = 0; i < array.length; i++) {
+      string = string + array[i];
+    }
+    console.log("string: " + string);
+    return "" + string;
+  }
+
 }
