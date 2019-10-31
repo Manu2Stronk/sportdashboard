@@ -1,6 +1,9 @@
+let that;
+
 class pageActivity{
   constructor(app){
     this._app = app;
+    that = this;
   }
   async show(){
     let html = await fetch("page-activity/page-activity.html")
@@ -12,6 +15,7 @@ class pageActivity{
 
     setTimeout(() => {this.loadAllActivities()}, 2000);
     //this.loadAllActivities();
+
   }
 
     /**
@@ -61,9 +65,16 @@ class pageActivity{
     openAddActivityModal() {
         var oModal = document.getElementById("idAddActivityModal");
         oModal.style.display = "block";
+
+        $(document).keydown(function(e) {
+          if (e.keyCode === 27) {
+              that.closeAddActivityModal();
+          }
+        });
+
     }
 
-    /**
+      /**
      * Closes the add activity form/Modal
      * @public
      */

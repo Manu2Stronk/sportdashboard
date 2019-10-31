@@ -10,7 +10,6 @@ class pageAnalytic{
     }
     this._app.setPageContent(htmlContent);
 
-    setTimeout(() => {this.loadAllActivities()}, 2000);
     //this.loadAllActivities();
   }
 
