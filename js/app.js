@@ -1,6 +1,9 @@
 class App{
   constructor (pageList){
     this._pages = pageList;
+
+    //when page is reloaded -> it shows the last screen
+    this._handleRoute();
   }
 
   run(){
