@@ -9,7 +9,9 @@ class pageAnalytic{
       htmlContent = await html.text();
     }
     this._app.setPageContent(htmlContent);
-    this.loadAllActivities();
+
+    setTimeout(() => {this.loadAllActivities()}, 2000);
+    //this.loadAllActivities();
   }
 
 
@@ -56,4 +58,4 @@ getValues(oActivity, temp){
 
 AnalyticalPage = new pageAnalytic();
 
-setTimeout(() => {AnalyticalPage.loadAllActivities()}, 2000);
+//setTimeout(() => {AnalyticalPage.loadAllActivities()}, 2000);
