@@ -15,16 +15,25 @@ class pageAnalytic{
 
 
 async loadAllActivities() {
+  var sLabelCalorie = 1;
+  var oLabelCalorie = document.getElementById('calorieID');
+  var today = new Date();
+  var date1 = today.getDate();
 
   //load activities from the firebase firestore
   var oQuerySnapshot = await firebase.firestore().collection("activities").get();
   oQuerySnapshot.docs.forEach((oDocument) => {
     var oActivity = oDocument.data();
-    this.getValues(oActivity);
+    var date2 = oActivity.date.getDate();
+    var date3 = date1 + date2;
+    this.getValues(oActivity, sLabelCalorie);
+    sLabelCalorie = sLabelCalorie + oActivity.cal;
+    console.log(date3);
 
   })
+  oLabelCalorie.innerHTML = sLabelCalorie;
 }
-getValues(oActivity, temp){
+getValues(oActivity, sLabelCalorie){
   var oLabelHeart = document.getElementById('heartrateID'),
   sLabelHeart = oActivity.heart_rate;
   oLabelHeart.innerHTML = sLabelHeart;
@@ -35,9 +44,10 @@ getValues(oActivity, temp){
   sLabelDurationSS = oActivity.durationSS;
   oLabelDuration.innerHTML = sLabelDurationHH + ":" + sLabelDurationMM + ":" + sLabelDurationSS;
 
-  var oLabelCalorie = document.getElementById('calorieID'),
-  sLabelCalorie = oActivity.cal;
-  oLabelCalorie.innerHTML = sLabelCalorie;
+  // var oLabelCalorie = document.getElementById('calorieID');
+  sLabelCalorie = sLabelCalorie + oActivity.cal;
+  console.log(oActivity.cal, sLabelCalorie);
+  // oLabelCalorie.innerHTML = sLabelCalorie;
 
   // var oLabelwklDuration = document.getElementById('wklDurationID'),
   // sLabelwklDuration = oActivity.cal;
@@ -56,4 +66,4 @@ getValues(oActivity, temp){
 
 AnalyticalPage = new pageAnalytic();
 
-setTimeout(() => {AnalyticalPage.loadAllActivities()}, 2000);
+// setTimeout(() => {AnalyticalPage.loadAllActivities()}, 2000);
