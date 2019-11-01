@@ -52,7 +52,10 @@ class pagePlan{
       plan.save(divWorkout, divListOfWorkouts, workouts, workout, dropdown);
     });
 
-    buttonChange.addEventListener("click", () => {
+    buttonChangeLeft.addEventListener("click", () => {
+      plan.change();
+    });
+    buttonChangeRight.addEventListener("click", () => {
       plan.change();
     });
   }
