@@ -71,7 +71,6 @@ class pageActivity{
               that.closeAddActivityModal();
           }
         });
-
     }
 
       /**
