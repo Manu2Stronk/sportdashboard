@@ -11,23 +11,30 @@ class Plan {
 
   change() {
     console.log("plan.change()");
-    let textDistance = document.getElementById("textDistance");
+    let textDistance = document.getElementById("textDistance").textContent;
+    let distance = "";
+    let duration = "";
+    // textDistance = this.arrayToString(textDistance);
+    textDistance.trim();
+    console.log("textDistance: " + textDistance.trim());
 
-    if (document.getElementById("distance") !== "duration") {
-      console.log("if");
-      let inputDistance = document.getElementById("distance");
-      inputDistance.setAttribute("id" , "duration");
-      textDistance.innerHTML = "Duration";
-      // inputDistance.placeholder = "0min";
-
-    } else {
-      console.log("else");
-      let inputDuration = document.getElementById("duration");
-      inputDuration.setAttribute("id", "distance");
-      textDistance.innerHTML = "Distance";
-      // inputDistance.placeholder = "0km";
+    if (textDistance.trim() === "Distance") {
+      console.log("Distance");
+      distance = document.getElementById("distance").value;
+      console.log("change() distance: " + distance);
+      document.getElementById("textDistance").innerHTML = "Duration";
+      document.getElementById("distance").id = "duration";
+      // document.getElementById("duration").placeholder = "0min";
+      document.getElementById("duration").innerHTML = duration;
     }
-
+    if (textDistance.trim() === "Duration") {
+      console.log("Duration");
+      duration = document.getElementById("duration").value;
+      document.getElementById("textDistance").innerHTML = "Distance";
+      document.getElementById("duration").id = "distance";
+      // document.getElementById("distance").placeholder = "0km";
+      document.getElementById("distance").innerHTML = distance;
+    }
   }
 
   addWorkout(workouts, workout) {
@@ -140,8 +147,9 @@ class Plan {
     let duration = "";
     try {
       duration = document.getElementById("duration").value;
+      console.log("duration in get Duration: " + duration);
     } catch {}
-    return duration = "";
+    return duration;
   }
 
   getKindOfSprot() {
