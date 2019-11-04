@@ -1,12 +1,12 @@
-class pagePlan{
-  constructor(app){
+class pagePlan {
+  constructor(app) {
     this._app = app;
   }
-  async show(){
+  async show() {
     console.log("page-plan: show() running");
     let html = await fetch("page-plan/page-plan.html")
     let htmlContent = "";
-    if(html.ok){
+    if (html.ok) {
       htmlContent = await html.text();
     }
     this._app.setPageContent(htmlContent);
@@ -20,6 +20,11 @@ class pagePlan{
     let dropdown = document.getElementById("dropdown");
     let divWorkout = document.getElementById("divWorkout");
     let divListOfWorkouts = document.getElementById("divListOfWorkouts");
+    let textDistance = document.getElementById("textDistance").textContent;
+
+    console.log("textDistance: " + textDistance);
+    let distance = "";
+    let duration = "";
 
     let plan = new Plan();
     let workouts = new Array();
@@ -39,8 +44,8 @@ class pagePlan{
       console.log("buttonSave clicked");
       let title = plan.getTitle();
       let date = plan.getDate();
-      let distance = plan.getDistance();
-      let duration = plan.getDuration();
+      distance = plan.getDistance(distance);
+      duration = plan.getDuration(duration);
       console.log("Duration: " + duration);
       let kindOfSport = plan.getKindOfSprot();
       let description = plan.getDescription();
@@ -54,10 +59,35 @@ class pagePlan{
     });
 
     buttonChangeLeft.addEventListener("click", () => {
-      plan.change();
+      textDistance = document.getElementById("textDistance").textContent;
+      if (textDistance.trim() === "Distance") {
+        try {
+          distance = plan.changeDistance();
+          console.log("distance: " + distance);
+        } catch {}
+      }
+      if (textDistance.trim() === "Duration") {
+        try {
+          duration = plan.changeDuration();
+        } catch {}
+      }
+
     });
     buttonChangeRight.addEventListener("click", () => {
-      plan.change();
+      textDistance = document.getElementById("textDistance").textContent;
+      textDistance.trim();
+      if (textDistance.trim() === "Distance") {
+        try {
+          distance = plan.changeDistance();
+          console.log("_distance: " + distance);
+        } catch {}
+      }
+      if (textDistance.trim() === "Duration") {
+        try {
+          duration = plan.changeDuration();
+          console.log("_duration: " + duration);
+        } catch {}
+      }
     });
   }
 }

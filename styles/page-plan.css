@@ -47,14 +47,11 @@
 }
 
 
-.inputDistance {
-  .inputDistance {
-  display: flex;
+.input_Distance {
   font-size: 20px;
   width: calc(100% - 40px);
   margin-left: 20px;
   text-align: center;
-}
 }
 
 .inputDuration {}
@@ -111,7 +108,7 @@
 .workoutTitle {
   font-size: 30px;
   heigt: 40px;
-  width: 300px;
+  width: calc(93% - 200px);
   border: none;
   margin-left: 4.75%;
   margin-top: 20px;
