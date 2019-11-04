@@ -41,6 +41,7 @@ class pagePlan{
       let date = plan.getDate();
       let distance = plan.getDistance();
       let duration = plan.getDuration();
+      console.log("Duration: " + duration);
       let kindOfSport = plan.getKindOfSprot();
       let description = plan.getDescription();
       let workout = new Workout(id, title, date, distance, duration, kindOfSport, description);
