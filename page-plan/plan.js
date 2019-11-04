@@ -9,32 +9,36 @@ class Plan {
     divWorkout.style.display = "block";
   }
 
-  change() {
-    console.log("plan.change()");
-    let textDistance = document.getElementById("textDistance").textContent;
+  changeDistance() {
+
+    console.log("plan.changeDistance()");
     let distance = "";
+    // console.log("Distance");
+    distance = document.getElementById("distance").value;
+    console.log("change() distance: " + distance);
+    document.getElementById("textDistance").innerHTML = "Duration";
+    document.getElementById("distance").id = "duration";
+    document.getElementById("duration").placeholder = "0min";
+    document.getElementById("duration").innerHTML = duration;
+
+    return distance;
+  }
+
+  changeDuration() {
+    console.log("plan.changeDuration()");
     let duration = "";
     // textDistance = this.arrayToString(textDistance);
-    textDistance.trim();
-    console.log("textDistance: " + textDistance.trim());
+    // textDistance.trim();
+    // console.log("textDistance: " + textDistance.trim());
+    // console.log("Duration");
+    duration = document.getElementById("duration").value;
+    console.log("change() duration: " + duration);
+    document.getElementById("textDistance").innerHTML = "Distance";
+    document.getElementById("duration").id = "distance";
+    document.getElementById("distance").placeholder = "0km";
+    document.getElementById("distance").innerHTML = distance;
 
-    if (textDistance.trim() === "Distance") {
-      console.log("Distance");
-      distance = document.getElementById("distance").value;
-      console.log("change() distance: " + distance);
-      document.getElementById("textDistance").innerHTML = "Duration";
-      document.getElementById("distance").id = "duration";
-      // document.getElementById("duration").placeholder = "0min";
-      document.getElementById("duration").innerHTML = duration;
-    }
-    if (textDistance.trim() === "Duration") {
-      console.log("Duration");
-      duration = document.getElementById("duration").value;
-      document.getElementById("textDistance").innerHTML = "Distance";
-      document.getElementById("duration").id = "distance";
-      // document.getElementById("distance").placeholder = "0km";
-      document.getElementById("distance").innerHTML = distance;
-    }
+    return duration;
   }
 
   addWorkout(workouts, workout) {
@@ -102,7 +106,7 @@ class Plan {
       let distancElement = document.createElement("input");
       let distanceValue = "";
       distanceValue = this.arrayToString(Object.values(workouts[i].distance)) + "km / " + this.arrayToString(Object.values(workouts[i].duration)) + "min";
-      distancElement.className += "inputDistance inputGeneral";
+      distancElement.className += "input_Distance inputGeneral";
       distancElement.type = "text";
       distancElement.disabled = true;
       distancElement.value += distanceValue;
@@ -135,16 +139,14 @@ class Plan {
     return document.getElementById("date").value;
   }
 
-  getDistance() {
-    let distance = "";
+  getDistance(distance) {
     try {
       distance = document.getElementById("distance").value;
     } catch {}
     return distance;
   }
 
-  getDuration() {
-    let duration = "";
+  getDuration(duration) {
     try {
       duration = document.getElementById("duration").value;
       console.log("duration in get Duration: " + duration);
