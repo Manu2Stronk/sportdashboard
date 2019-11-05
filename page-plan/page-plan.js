@@ -52,10 +52,7 @@ class pagePlan {
       let workout = new Workout(id, title, date, distance, duration, kindOfSport, description);
       id = id + 1;
       console.log("workout: " + Object.values(workout));
-
-      plan.addWorkout(workouts, workout);
-      plan.sortWorkouts(workouts);
-      plan.save(divWorkout, divListOfWorkouts, workouts, workout, dropdown);
+      plan.checkValues(title, date, divWorkout, divListOfWorkouts, workouts, workout, dropdown);
     });
 
     buttonChangeLeft.addEventListener("click", () => {
