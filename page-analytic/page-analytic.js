@@ -37,10 +37,11 @@ async getAndLoadData() {
   var sLabelwklDistance = 0;
   var sLabelwklHeart = 0;
   var sLabelwklCal = 0;
-  //Declaration of current Time object and count help variable
+  //Declaration of current Time object, empty Time object and count variable
   var today = new Date();
   var dateNow = today.getTime();
-  var i = 0;
+  var count = 0;
+  var helpdate = new Date(null);
 
   //load activities from the firebase firestore
   var oQuerySnapshot = await firebase.firestore().collection("activities").get();
@@ -53,57 +54,41 @@ async getAndLoadData() {
       sLabelwklDurationHH += oActivity.durationHH;
       sLabelwklDurationMM += oActivity.durationMM;
       sLabelwklDurationSS += oActivity.durationSS;
-      i++;
       sLabelwklCal += oActivity.cal;
       sLabelwklHeart += oActivity.heart_rate;
+      count++;
     }
     sLabelCalorie = oActivity.cal;
     sLabelDistance = oActivity.distance;
     sLabelHeart = oActivity.heart_rate;
-    sLabelwklDurationHH = oActivity.durationHH;
-    sLabelwklDurationMM = oActivity.durationMM;
-    sLabelwklDurationSS = oActivity.durationSS;
+    sLabelwklDurationHH += oActivity.durationHH;
+    sLabelwklDurationMM += oActivity.durationMM;
+    sLabelwklDurationSS += oActivity.durationSS;
 
   })
+  var helpdate = new Date(null);
+  helpdate.setHours(sLabelwklDurationHH);
+  helpdate.setMinutes(sLabelwklDurationMM);
+  helpdate.setSeconds(sLabelwklDurationSS);
+  var helphours = helpdate.getHours();
+  var helpminutes = helpdate.getMinutes();
+  var helpseconds = helpdate.getSeconds();
+
+
   oLabelCalorie.innerHTML = sLabelCalorie + "kcal";
   oLabelHeart.innerHTML = sLabelHeart + "BPM";
   oLabelDuration.innerHTML = sLabelDurationHH + ":" + sLabelDurationMM + ":" + sLabelDurationSS;
   oLabelDistance.innerHTML = sLabelDistance + "km";
   oLabelwklDistance.innerHTML = sLabelwklDistance + "km";
-  oLabelwklDuration.innerHTML = sLabelwklDurationHH  + ":" + sLabelwklDurationMM + ":" + sLabelwklDurationSS;
+  oLabelwklDuration.innerHTML = helphours + ":" + helpminutes + ":" + helpseconds;
   oLAbelwklCal.innerHTML = sLabelwklCal + "kcal";
-  if (i != 0) {
-      oLabelwklHeart.innerHTML = sLabelwklHeart / i ;
+  if (count != 0) {
+    oLabelwklHeart.innerHTML = Math.round(sLabelwklHeart / count);
+    // sLabelwklDurationHH  + ":" + sLabelwklDurationMM + ":" + sLabelwklDurationSS
   }
 
 
 }
-// getValues(oActivity, sLabelCalorie){
-//
-//
-//   oLabelHeart.innerHTML = sLabelHeart;
-//
-//
-//
-//   oLabelDuration.innerHTML = sLabelDurationHH + ":" + sLabelDurationMM + ":" + sLabelDurationSS;
-//
-//   // var oLabelCalorie = document.getElementById('calorieID');
-//   sLabelCalorie = sLabelCalorie + oActivity.cal;
-//   console.log(oActivity.cal, sLabelCalorie);
-//   // oLabelCalorie.innerHTML = sLabelCalorie;
-//
-//   // ,
-//   //  oActivity.cal;
-//   // oLabelwklDuration.innerHTML = sLabelwklDuration;
-//
-//   // ,
-//   //  = oActivity.cal;
-//   // oLabelwklDistance.innerHTML = sLabel;
-//
-//   ,
-//   = oActivity.distance;
-//   oLabelDistance.innerHTML = sLabelDistance;
-// }
 
 }
 
