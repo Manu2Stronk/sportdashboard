@@ -59,9 +59,6 @@ async getAndLoadData() {
     var oActivity = oDocument.data();
     var dateAct = oActivity.date.getTime();
     var dateTemp = dateNow - dateAct
-    console.log(oActivity.durationHH);
-    console.log(oActivity.durationMM);
-    console.log(oActivity.durationSS);
     if (dateTemp <= 604800000) {
       sLabelwklDistance += oActivity.distance;
       sLabelwklDurationHH += oActivity.durationHH;
