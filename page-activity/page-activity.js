@@ -53,6 +53,7 @@ class pageActivity{
       sRow += "<td>" + this.formatAverageSpeed(oActivity) + "</td>";
       sRow += "<td>" + oActivity.cal + " kcal" + "</td>";
       sRow += "<td>" + oActivity.heart_rate + "</td>";
+      sRow += "<td> <input type='checkbox' onclick= 'deleteRow'> </td>";
 
       temp.innerHTML = sRow;
       oActivityTable.appendChild(temp);
@@ -103,7 +104,6 @@ class pageActivity{
         heart_rate: parseInt(document.getElementById("idAddActivityForm-heartField").value),
       }
 
-      console.log(oActivity);
       firebase.firestore().collection("activities").doc().set(oActivity)
         .then(() => {
             this.closeAddActivityModal();
@@ -112,10 +112,15 @@ class pageActivity{
 
         return false;
     };
+    /**
+    * Deletes selected Datasets
+    * @public
+    */
+   deleteRow(oEvent) {
+     //var dRow = document.getElementById();
+     document.getElementById("activity").deleteRow(0);
+   };
 
-    // onDetail{
-    //
-    // };
 
     /* Formatter */
 
