@@ -37,11 +37,21 @@ async getAndLoadData() {
   var sLabelwklDistance = 0;
   var sLabelwklHeart = 0;
   var sLabelwklCal = 0;
-  //Declaration of current Time object, empty Time object and count variable
+  //Declaration of current Time object, empty Time object, time help variables and count variable
   var today = new Date();
   var dateNow = today.getTime();
+  var helpDateWkl = new Date(null);
+  var helpDateLast = new Date(null);
+  // -1 because of german time zone (GMT+1)
+  var helpHoursWkl = -1;
+  var helpMinutesWkl = 0;
+  var helpSecondsWkl = 0;
+
+  var helpHoursLast = -1;
+  var helpMinutesLast = 0;
+  var helpSecondsLast = 0;
+
   var count = 0;
-  var helpdate = new Date(null);
 
   //load activities from the firebase firestore
   var oQuerySnapshot = await firebase.firestore().collection("activities").get();
@@ -49,6 +59,9 @@ async getAndLoadData() {
     var oActivity = oDocument.data();
     var dateAct = oActivity.date.getTime();
     var dateTemp = dateNow - dateAct
+    console.log(oActivity.durationHH);
+    console.log(oActivity.durationMM);
+    console.log(oActivity.durationSS);
     if (dateTemp <= 604800000) {
       sLabelwklDistance += oActivity.distance;
       sLabelwklDurationHH += oActivity.durationHH;
@@ -61,27 +74,36 @@ async getAndLoadData() {
     sLabelCalorie = oActivity.cal;
     sLabelDistance = oActivity.distance;
     sLabelHeart = oActivity.heart_rate;
-    sLabelwklDurationHH += oActivity.durationHH;
-    sLabelwklDurationMM += oActivity.durationMM;
-    sLabelwklDurationSS += oActivity.durationSS;
+    sLabelDurationHH = oActivity.durationHH;
+    sLabelDurationMM = oActivity.durationMM;
+    sLabelDurationSS = oActivity.durationSS;
+
 
   })
-  var helpdate = new Date(null);
-  helpdate.setHours(sLabelwklDurationHH);
-  helpdate.setMinutes(sLabelwklDurationMM);
-  helpdate.setSeconds(sLabelwklDurationSS);
-  var helphours = helpdate.getHours();
-  var helpminutes = helpdate.getMinutes();
-  var helpseconds = helpdate.getSeconds();
+  // var helpdate = new Date(null);
+  helpDateWkl.setHours(sLabelwklDurationHH);
+  helpDateWkl.setMinutes(sLabelwklDurationMM);
+  helpDateWkl.setSeconds(sLabelwklDurationSS);
+  helpHoursWkl = helpDateWkl.getHours();
+  helpMinutesWkl = helpDateWkl.getMinutes();
+  helpSecondsWkl = helpDateWkl.getSeconds();
+
+  helpDateLast.setHours(sLabelDurationHH);
+  helpDateLast.setMinutes(sLabelDurationMM);
+  helpDateLast.setSeconds(sLabelDurationSS);
+  var helpHoursLast = helpDateLast.getHours();
+  var helpMinutesLast = helpDateLast.getMinutes();
+  var helpSecondsLast = helpDateLast.getSeconds();
 
 
-  oLabelCalorie.innerHTML = sLabelCalorie + "kcal";
-  oLabelHeart.innerHTML = sLabelHeart + "BPM";
+  oLabelCalorie.innerHTML = sLabelCalorie + " kcal";
+  oLabelHeart.innerHTML = sLabelHeart + " BPM";
   oLabelDuration.innerHTML = sLabelDurationHH + ":" + sLabelDurationMM + ":" + sLabelDurationSS;
-  oLabelDistance.innerHTML = sLabelDistance + "km";
-  oLabelwklDistance.innerHTML = sLabelwklDistance + "km";
-  oLabelwklDuration.innerHTML = helphours + ":" + helpminutes + ":" + helpseconds;
-  oLAbelwklCal.innerHTML = sLabelwklCal + "kcal";
+  oLabelDistance.innerHTML = sLabelDistance + " km";
+  oLabelwklDistance.innerHTML = sLabelwklDistance + " km";
+  oLabelwklDuration.innerHTML = helpHoursWkl + ":" + helpMinutesWkl + ":" + helpSecondsWkl;
+  oLabelDuration.innerHTML = helpHoursLast + ":" + helpMinutesLast + ":" + helpSecondsLast;
+  oLAbelwklCal.innerHTML = sLabelwklCal + " kcal";
   if (count != 0) {
     oLabelwklHeart.innerHTML = Math.round(sLabelwklHeart / count);
     // sLabelwklDurationHH  + ":" + sLabelwklDurationMM + ":" + sLabelwklDurationSS
