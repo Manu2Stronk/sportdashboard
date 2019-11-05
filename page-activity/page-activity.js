@@ -53,10 +53,11 @@ class pageActivity{
       sRow += "<td>" + this.formatAverageSpeed(oActivity) + "</td>";
       sRow += "<td>" + oActivity.cal + " kcal" + "</td>";
       sRow += "<td>" + oActivity.heart_rate + "</td>";
-      //sRow += "<td> <input type='checkbox' onclick= 'deleteRow()'> </td>";
-      var btn = document.createElement("BUTTON");
-      btn.innerHTML = "Eintrag löschen";
-      btn.addEventListener("click", () => {
+      var buttonRow = document.createElement("td");
+      var loeschenBtn = document.createElement("BUTTON");
+      loeschenBtn.innerHTML = "🗑️";
+      loeschenBtn.classList.add("addActivityB");
+      loeschenBtn.addEventListener("click", () => {
         console.log(oDocument.ref);
         oDocument.ref.delete().then(function() {
             console.log("Document successfully deleted!");
@@ -67,7 +68,8 @@ class pageActivity{
       });
 
       temp.innerHTML = sRow;
-      temp.appendChild(btn);
+      temp.appendChild(buttonRow);
+      buttonRow.appendChild(loeschenBtn);
       oActivityTable.appendChild(temp);
     }
 

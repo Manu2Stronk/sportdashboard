@@ -28,6 +28,7 @@
   text-decoration: none;
   margin-left: 10px;
   margin-top: 10px;
+
 }
 
 .addActivityB:hover {
@@ -39,9 +40,6 @@
   position: relative;
   top: 1px;
 }
-
-
-
 
 /* Table Styling */
 .activityTable {
@@ -59,10 +57,6 @@
 .activityTable td, .activityTable th {
   text-align: right;
   border-bottom: 1px solid black;
-}
-.activityTable tr{
-  border-bottom: 5px solid black;
-  border-bottom: 5px solid black;
 }
 
 /* Modal Styling */
