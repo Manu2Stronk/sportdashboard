@@ -5,6 +5,7 @@
 body {
   background-color: #f7f7f7;
   margin: 0em;
+  min-width: 600px;
 }
 
 /* Fonts */
@@ -19,18 +20,23 @@ a:hover{
 /* End Fonts */
 
 /* Tablet responsive */
-@media only screen and (max-width: 1025px) {
-  menu{
+@media only screen and (max-width: 1000px) {
+  /* .topBarHeadline{
     height: 4em;
     font-size: 4em;
-  }
+    background-color: black;
+  } */
+
 }
 /* Smartphone responsive */
-@media only screen and (max-width: 415px) {
-  menu{
-    height: 5em;
+@media only screen and (max-width: 500px) {
+  .topBarHeadline{
+    height: auto;
     font-size: 4em;
+    background-color: green;
+    padding-left: 0px;
   }
+
 }
 
 .topBar {

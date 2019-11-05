@@ -105,11 +105,44 @@ class Plan {
 
       let distancElement = document.createElement("input");
       let distanceValue = "";
-      distanceValue = this.arrayToString(Object.values(workouts[i].distance)) + "km / " + this.arrayToString(Object.values(workouts[i].duration)) + "min";
+
+      if (this.arrayToString(Object.values(workouts[i].distance)) !== ""){
+        distanceValue = this.arrayToString(Object.values(workouts[i].distance)) + "km";
+      }
+      if (this.arrayToString(this.arrayToString(Object.values(workouts[i].duration))) !== "") {
+        distanceValue = this.arrayToString(this.arrayToString(Object.values(workouts[i].duration)) + "min");
+      }
+      if (this.arrayToString(Object.values(workouts[i].distance)) !== "" && this.arrayToString(Object.values(workouts[i].duration)) !== ""){
+        distanceValue = this.arrayToString(Object.values(workouts[i].distance)) + "km / " + this.arrayToString(Object.values(workouts[i].duration)) + "min";
+      }
+
+      // console.log("was drin steht: " + this.arrayToString(Object.values(workouts[i].distance)) !== "" && this.arrayToString(Object.values(workouts[i].duration)) !== "");
+      console.log("distanceValue: " + distanceValue);
       distancElement.className += "input_Distance inputGeneral";
       distancElement.type = "text";
       distancElement.disabled = true;
       distancElement.value += distanceValue;
+
+      let kindOfSportElement = document.createElement("input");
+      let kindOfSportValue = "";
+      kindOfSportValue = this.arrayToString(Object.values(workouts[i].kindOfSport));
+      kindOfSportElement.className += "inputKindOfSport inputGeneral";
+      kindOfSportElement.type = "text";
+      kindOfSportElement.disabled = true;
+
+      if (kindOfSportValue === "Bike") {
+        kindOfSportElement.value += "🚴";
+      }
+      if (kindOfSportValue === "Run") {
+        kindOfSportElement.value += "🏃";
+      }
+      if (kindOfSportValue === "Swim") {
+        kindOfSportElement.value += "🏊";
+      }
+      if (kindOfSportValue === "Athletics") {
+        kindOfSportElement.value += "🏋️";
+      }
+
 
       let lineElement = document.createElement("hr");
 
@@ -118,8 +151,10 @@ class Plan {
       divElement.appendChild(buttonElement);
       divElement.appendChild(dateElement);
       divElement.appendChild(lineElement);
-      divElement.appendChild(titleElement);
+      divElement.appendChild(kindOfSportElement);
       divElement.appendChild(distancElement);
+      divElement.appendChild(titleElement);
+
 
       buttonElement.addEventListener("click", () => {
         divElement.parentNode.removeChild(divElement);

@@ -32,8 +32,7 @@ class pageActivity{
       //load activities from the firebase firestore
       var oQuerySnapshot = await firebase.firestore().collection("activities").get();
       oQuerySnapshot.docs.forEach((oDocument) => {
-        var oActivity = oDocument.data();
-        this.renderActivity(oActivity);
+        this.renderActivity(oDocument);
       })
     }
 
@@ -41,7 +40,8 @@ class pageActivity{
      * Renders a given activity to the activity table
      * @public
      */
-    renderActivity(oActivity) {
+    renderActivity(oDocument) {
+      var oActivity = oDocument.data();
       var oActivityTable = document.getElementById("idActivityTableBody"),
           temp = document.createElement('tr'),
           sRow = "";
@@ -53,9 +53,21 @@ class pageActivity{
       sRow += "<td>" + this.formatAverageSpeed(oActivity) + "</td>";
       sRow += "<td>" + oActivity.cal + " kcal" + "</td>";
       sRow += "<td>" + oActivity.heart_rate + "</td>";
-      sRow += "<td> <input type='checkbox' onclick= 'deleteRow'> </td>";
+      //sRow += "<td> <input type='checkbox' onclick= 'deleteRow()'> </td>";
+      var btn = document.createElement("BUTTON");
+      btn.innerHTML = "Eintrag löschen";
+      btn.addEventListener("click", () => {
+        console.log(oDocument.ref);
+        oDocument.ref.delete().then(function() {
+            console.log("Document successfully deleted!");
+            that.loadAllActivities();
+        }).catch(function(error) {
+            console.error("Error removing document: ", error);
+        });
+      });
 
       temp.innerHTML = sRow;
+      temp.appendChild(btn);
       oActivityTable.appendChild(temp);
     }
 
@@ -116,7 +128,7 @@ class pageActivity{
     * Deletes selected Datasets
     * @public
     */
-   deleteRow(oEvent) {
+   deleteRow(oEvent, ) {
      //var dRow = document.getElementById();
      document.getElementById("activity").deleteRow(0);
    };
