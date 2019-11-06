@@ -15,7 +15,7 @@ class pagePlan {
   }
 
   async loadAllActivities() {
-    // 
+    //
     // var firebaseConfig = {
     //   apiKey: "AIzaSyDQJNTCymv5mP0bAjkdbab-cWpAVZFJHMo",
     //   authDomain: "trainingsplan-88a5b.firebaseapp.com",
@@ -83,7 +83,6 @@ class pagePlan {
           duration = plan.changeDuration();
         } catch {}
       }
-
     });
     buttonChangeRight.addEventListener("click", () => {
       textDistance = document.getElementById("textDistance").textContent;
