@@ -15,6 +15,21 @@ class pagePlan {
   }
 
   async loadAllActivities() {
+    // 
+    // var firebaseConfig = {
+    //   apiKey: "AIzaSyDQJNTCymv5mP0bAjkdbab-cWpAVZFJHMo",
+    //   authDomain: "trainingsplan-88a5b.firebaseapp.com",
+    //   databaseURL: "https://trainingsplan-88a5b.firebaseio.com",
+    //   projectId: "trainingsplan-88a5b",
+    //   storageBucket: "trainingsplan-88a5b.appspot.com",
+    //   messagingSenderId: "189292657427",
+    //   appId: "1:189292657427:web:71e70144eacecb3b7c78e6",
+    //   measurementId: "G-8ZSZVF71V1"
+    // };
+    // let firebaseTrainingsplan = new FirebaseTrainingsplan();
+    // let firebase = firebaseTrainingsplan.init();
+    // firebaseTrainingsplan.write(firebase);
+
     console.log("page-plan.html running");
     let buttonAddWorkout = document.getElementById("buttonAddWorkout");
     let dropdown = document.getElementById("dropdown");
