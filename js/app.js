@@ -7,6 +7,7 @@ class App{
   }
 
   run(){
+    console.log("App running");
     window.addEventListener("hashchange", ()=> {
         console.log("hashchange");
         this._handleRoute();

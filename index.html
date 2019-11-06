@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=0" />
 
 <head>
   <meta charset="utf-8">
@@ -18,8 +19,7 @@
   <script src="./page-analytic/page-analytic.js"> </script>
   <script src="./page-plan/page-plan.js"> </script>
   <script src="./page-plan/plan.js"></script>
-  <script src="./page-plan/workout.js"></script>
-  <script src="./page-tutorial/page-tutorial.js" charset="utf-8"></script>
+  <script src="./page-plan/workout.js"></script>  
 
 
 
@@ -46,6 +46,7 @@
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
   </script>
+
 
   <!-- Script for Single Page -->
   <script type="text/javascript">
@@ -77,6 +78,7 @@
 </head>
 
 <!-- Body starts here -->
+
 <body>
   <div class="topBar">
     <div class="topBarHeadline">
@@ -96,10 +98,10 @@
       </a>
       </div>
       <div class="menuItem">
-        <a href ="#/plan">
-        <span class="menuItem-icon">🔍</span>
-        <span class="menuItem-text">Plan</span>
-      </a>
+        <a href="#/plan">
+          <span class="menuItem-icon">🔍</span>
+          <span class="menuItem-text">Plan</span>
+        </a>
       </div>
     </div>
   </div>
@@ -108,4 +110,5 @@
     <!-- Hier ist die Single Page-->
   </div>
 </body>
+
 </html>

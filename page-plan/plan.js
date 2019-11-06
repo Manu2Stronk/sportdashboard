@@ -10,7 +10,6 @@ class Plan {
   }
 
   changeDistance() {
-
     console.log("plan.changeDistance()");
     let distance = "";
     // console.log("Distance");
@@ -104,15 +103,15 @@ class Plan {
       dateElement.value += placeholder + ":";
 
       let distancElement = document.createElement("input");
-      let distanceValue = "";
+      let distanceValue = "0km / 0min";
 
-      if (this.arrayToString(Object.values(workouts[i].distance)) !== ""){
+      if (this.arrayToString(Object.values(workouts[i].distance)) !== "") {
         distanceValue = this.arrayToString(Object.values(workouts[i].distance)) + "km";
       }
       if (this.arrayToString(this.arrayToString(Object.values(workouts[i].duration))) !== "") {
         distanceValue = this.arrayToString(this.arrayToString(Object.values(workouts[i].duration)) + "min");
       }
-      if (this.arrayToString(Object.values(workouts[i].distance)) !== "" && this.arrayToString(Object.values(workouts[i].duration)) !== ""){
+      if (this.arrayToString(Object.values(workouts[i].distance)) !== "" && this.arrayToString(Object.values(workouts[i].duration)) !== "") {
         distanceValue = this.arrayToString(Object.values(workouts[i].distance)) + "km / " + this.arrayToString(Object.values(workouts[i].duration)) + "min";
       }
 
@@ -143,7 +142,6 @@ class Plan {
         kindOfSportElement.value += "🏋️";
       }
 
-
       let lineElement = document.createElement("hr");
 
       // add to dropdown
@@ -160,7 +158,7 @@ class Plan {
         divElement.parentNode.removeChild(divElement);
         workouts.splice(workouts.indexOf(workout), 1);
         for (var i = 0; i < workouts.length; i++) {
-          console.log("workouts_delete: " + Object.values(Object.values(workouts[i])));
+          console.log("workoutsDelete: " + Object.values(Object.values(workouts[i])));
         }
       });
     }
@@ -220,6 +218,30 @@ class Plan {
     return document.getElementById("discription").value;
   }
 
+  checkValues(title, date, divWorkout, divListOfWorkouts, workouts, workout, dropdown) {
+
+    document.getElementById("workoutTitle").classList.remove("transformMissingInput");
+    document.getElementById("date").classList.remove("transformMissingInput");
+
+    if (title !== "" && date !== "") {
+      this.addWorkout(workouts, workout);
+      this.sortWorkouts(workouts);
+      this.save(divWorkout, divListOfWorkouts, workouts, workout, dropdown);
+    } else if (title !== "") {
+      // document.getElementById("date").classList.remove("dateclass");
+      document.getElementById("date").classList.add("transformMissingInput");
+    } else if (date !== "") {
+      // document.getElementById("workoutTitle").classList.remove("workoutTitle");
+      document.getElementById("workoutTitle").classList.add("transformMissingInput");
+    }
+    else {
+      // document.getElementById("date").classList.remove("dateclass");
+      document.getElementById("date").classList.add("transformMissingInput");
+      // document.getElementById("workoutTitle").classList.remove("workoutTitle");
+      document.getElementById("workoutTitle").classList.add("transformMissingInput");
+    }
+  }
+
   arrayToString(array) {
     let string = "";
     for (var i = 0; i < array.length; i++) {
@@ -227,5 +249,4 @@ class Plan {
     }
     return "" + string;
   }
-
 }

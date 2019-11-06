@@ -130,6 +130,35 @@
   border: none;
 }
 
+.transformMissingInput {
+  -webkit-animation-name: example;
+  -webkit-animation-duration: 2s;
+  animation-name: example;
+  animation-duration: 2s;
+}
+
+@-webkit-keyframes example {
+  from {
+    background-color: white;
+  }
+
+  to {
+    background-color: red;
+  }
+}
+
+@keyframes example {
+  from {
+    background-color: red;
+  }
+
+  to {
+    background-color: white;
+  }
+}
+
+#date {}
+
 /* .dateclass.placeholderclass::before {
   width: 100%;
   content: attr(placeholder);
@@ -293,7 +322,7 @@
   background: #2aa1c0;
   border-radius: 3rem;
   opacity: 0.6;
-  z-index: 99999;
+  z-index: 9;
   transform: scale(0);
 }
 
