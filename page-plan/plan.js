@@ -5,15 +5,19 @@ class Plan {
 
   create(divWorkout) {
     console.log("plan.create()");
-    console.log(divWorkout);
-    divWorkout.style.display = "block";
+
+    let block = this.arrayToString(Object.values(document.getElementById("divWorkout").style.display));
+    if (block === "block") {
+      divWorkout.style.display = "none";
+    } else {
+      divWorkout.style.display = "block";
+    }
   }
 
   changeDistance() {
-
     console.log("plan.changeDistance()");
+
     let distance = "";
-    // console.log("Distance");
     distance = document.getElementById("distance").value;
     console.log("change() distance: " + distance);
     document.getElementById("textDistance").innerHTML = "Duration";
@@ -26,11 +30,8 @@ class Plan {
 
   changeDuration() {
     console.log("plan.changeDuration()");
+
     let duration = "";
-    // textDistance = this.arrayToString(textDistance);
-    // textDistance.trim();
-    // console.log("textDistance: " + textDistance.trim());
-    // console.log("Duration");
     duration = document.getElementById("duration").value;
     console.log("change() duration: " + duration);
     document.getElementById("textDistance").innerHTML = "Distance";
@@ -43,6 +44,7 @@ class Plan {
 
   addWorkout(workouts, workout) {
     console.log("plan.addWorkout()");
+
     workouts.push(workout);
     for (var i = 0; i < workouts.length; i++) {
       console.log("workouts: " + Object.values(Object.values(workouts[i])));
@@ -66,7 +68,6 @@ class Plan {
   }
 
   save(divWorkout, divListOfWorkouts, workouts, workout, dropdown) {
-    // let workout = new Workout();
     console.log("plan.save()");
 
     //delete All Elements of dropdown
@@ -75,6 +76,8 @@ class Plan {
     }
 
     divWorkout.style.display = "none";
+
+    //creating new dropdown by generating new elements from each workout of workouts
     for (var i = 0; i < workouts.length; i++) {
       // def div-Element
       let divElement = document.createElement("div");
@@ -104,15 +107,15 @@ class Plan {
       dateElement.value += placeholder + ":";
 
       let distancElement = document.createElement("input");
-      let distanceValue = "";
+      let distanceValue = "0km / 0min";
 
-      if (this.arrayToString(Object.values(workouts[i].distance)) !== ""){
+      if (this.arrayToString(Object.values(workouts[i].distance)) !== "") {
         distanceValue = this.arrayToString(Object.values(workouts[i].distance)) + "km";
       }
       if (this.arrayToString(this.arrayToString(Object.values(workouts[i].duration))) !== "") {
         distanceValue = this.arrayToString(this.arrayToString(Object.values(workouts[i].duration)) + "min");
       }
-      if (this.arrayToString(Object.values(workouts[i].distance)) !== "" && this.arrayToString(Object.values(workouts[i].duration)) !== ""){
+      if (this.arrayToString(Object.values(workouts[i].distance)) !== "" && this.arrayToString(Object.values(workouts[i].duration)) !== "") {
         distanceValue = this.arrayToString(Object.values(workouts[i].distance)) + "km / " + this.arrayToString(Object.values(workouts[i].duration)) + "min";
       }
 
@@ -142,8 +145,6 @@ class Plan {
       if (kindOfSportValue === "Athletics") {
         kindOfSportElement.value += "🏋️";
       }
-
-
       let lineElement = document.createElement("hr");
 
       // add to dropdown
@@ -155,12 +156,12 @@ class Plan {
       divElement.appendChild(distancElement);
       divElement.appendChild(titleElement);
 
-
+      //add delete function to buttonElement
       buttonElement.addEventListener("click", () => {
         divElement.parentNode.removeChild(divElement);
         workouts.splice(workouts.indexOf(workout), 1);
         for (var i = 0; i < workouts.length; i++) {
-          console.log("workouts_delete: " + Object.values(Object.values(workouts[i])));
+          console.log("workoutsDelete: " + Object.values(Object.values(workouts[i])));
         }
       });
     }
@@ -219,7 +220,29 @@ class Plan {
   getDescription() {
     return document.getElementById("discription").value;
   }
+  // Checking whether some inputs missing
+  checkValues(title, date, divWorkout, divListOfWorkouts, workouts, workout, dropdown) {
+    document.getElementById("workoutTitle").classList.remove("transformMissingInput");
+    document.getElementById("date").classList.remove("transformMissingInput");
+    if (title !== "" && date !== "") {
+      this.addWorkout(workouts, workout);
+      this.sortWorkouts(workouts);
+      this.save(divWorkout, divListOfWorkouts, workouts, workout, dropdown);
+    } else if (title !== "") {
+      // document.getElementById("date").classList.remove("dateclass");
+      document.getElementById("date").classList.add("transformMissingInput");
+    } else if (date !== "") {
+      // document.getElementById("workoutTitle").classList.remove("workoutTitle");
+      document.getElementById("workoutTitle").classList.add("transformMissingInput");
+    } else {
+      // document.getElementById("date").classList.remove("dateclass");
+      document.getElementById("date").classList.add("transformMissingInput");
+      // document.getElementById("workoutTitle").classList.remove("workoutTitle");
+      document.getElementById("workoutTitle").classList.add("transformMissingInput");
+    }
+  }
 
+  //function to turn arrays to string
   arrayToString(array) {
     let string = "";
     for (var i = 0; i < array.length; i++) {
@@ -227,5 +250,4 @@ class Plan {
     }
     return "" + string;
   }
-
 }

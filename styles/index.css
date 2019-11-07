@@ -30,13 +30,9 @@ a:hover{
 }
 /* Smartphone responsive */
 @media only screen and (max-width: 500px) {
-  .topBarHeadline{
-    height: auto;
-    font-size: 4em;
-    background-color: green;
-    padding-left: 0px;
-  }
-
+/* .topBar{
+  background-color: green;
+} */
 }
 
 .topBar {

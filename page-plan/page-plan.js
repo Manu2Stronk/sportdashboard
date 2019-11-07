@@ -15,6 +15,21 @@ class pagePlan {
   }
 
   async loadAllActivities() {
+    //
+    // var firebaseConfig = {
+    //   apiKey: "AIzaSyDQJNTCymv5mP0bAjkdbab-cWpAVZFJHMo",
+    //   authDomain: "trainingsplan-88a5b.firebaseapp.com",
+    //   databaseURL: "https://trainingsplan-88a5b.firebaseio.com",
+    //   projectId: "trainingsplan-88a5b",
+    //   storageBucket: "trainingsplan-88a5b.appspot.com",
+    //   messagingSenderId: "189292657427",
+    //   appId: "1:189292657427:web:71e70144eacecb3b7c78e6",
+    //   measurementId: "G-8ZSZVF71V1"
+    // };
+    // let firebaseTrainingsplan = new FirebaseTrainingsplan();
+    // let firebase = firebaseTrainingsplan.init();
+    // firebaseTrainingsplan.write(firebase);
+
     console.log("page-plan.html running");
     let buttonAddWorkout = document.getElementById("buttonAddWorkout");
     let dropdown = document.getElementById("dropdown");
@@ -52,10 +67,7 @@ class pagePlan {
       let workout = new Workout(id, title, date, distance, duration, kindOfSport, description);
       id = id + 1;
       console.log("workout: " + Object.values(workout));
-
-      plan.addWorkout(workouts, workout);
-      plan.sortWorkouts(workouts);
-      plan.save(divWorkout, divListOfWorkouts, workouts, workout, dropdown);
+      plan.checkValues(title, date, divWorkout, divListOfWorkouts, workouts, workout, dropdown);
     });
 
     buttonChangeLeft.addEventListener("click", () => {
@@ -71,7 +83,6 @@ class pagePlan {
           duration = plan.changeDuration();
         } catch {}
       }
-
     });
     buttonChangeRight.addEventListener("click", () => {
       textDistance = document.getElementById("textDistance").textContent;
