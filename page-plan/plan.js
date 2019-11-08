@@ -3,6 +3,20 @@ class Plan {
     // this.dropdown = dropdown;
   }
 
+  load(oDocument){
+    console.log("plan.load()");
+    var oWorkout = oDocument.data();
+
+    let oId = oWorkout.id;
+    let oTitle = oWorkout.title;
+    let oDate = oWorkout.date;
+    let oDistance = oWorkout.distance;
+    let oDuration = oWorkout.duration;
+    let oKindOfSport = oWorkout.kindOfSport;
+    let oDescription = oWorkout.description;
+    console.log("oTitle: " + oDate);
+  }
+
   create(divWorkout) {
     console.log("plan.create()");
 

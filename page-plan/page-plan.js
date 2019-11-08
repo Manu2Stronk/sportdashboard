@@ -15,9 +15,18 @@ class pagePlan {
   }
 
   async loadAllActivities() {
+
+    let plan = new Plan();
+    let workouts = new Array();
+    let workout = new Workout();
+    let id = 0;
+
       //load activities from the firebase firestore
       var oQuerySnapshotPlan = await firebase.firestore().collection("workouts").get();
+      console.log("oQuerySnapshotPlan: " + Object.values(oQuerySnapshotPlan));
       oQuerySnapshotPlan.docs.forEach((oDocument) => {
+        console.log("oDucument: " + Object.values(oDocument));
+        plan.load(oDocument);
         //Funktion die Pro Eintrag ausgeführt werden soll
       })
 
@@ -33,12 +42,7 @@ class pagePlan {
     let distance = "";
     let duration = "";
 
-    let plan = new Plan();
-    let workouts = new Array();
-    let workout = new Workout();
-    let id = 0;
-    // plan.getInputs();
-    // plan.save(divWorkout, divListOfWorkouts, workouts, workout);
+
 
     buttonAddWorkout.addEventListener("click", () => {
       console.log("buttonAddWorkout clicked");
