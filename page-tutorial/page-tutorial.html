@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <script src="../page-tutorial/page-tutorial.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="../styles/page-tutorial.css">
-    <title></title>
-  </head>
-  <body>
-<div class="main div">
-  <div class="buttonDiv">
-    <button type="button" name="buttonBack" id="buttonBack" class="buttons"></button>
-    <button type="button" name="buttonForward" id="buttonForward" class="buttons"></button>
-  </div>
-  <div class="imageDiv">
-    <img src="../page-tutorial/tutorial-images/firstImg.png" id="tutImg" class="tutImg">
-  </div>
-  <div class="DescriptionDiv">
-    <textarea readonly id="tutText" class="tutText">oihuuuuuiuofizfztfzifugouggiokkjskmflkwmlkmewkfmemflkmflknfwnfjkn</textarea>
-  </div>
-</div>
 
-  </body>
+<head>
+  <meta charset="utf-8">
+  <script src="./page-tutorial.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="../styles/page-tutorial.css">
+  <script type="text/javascript">
+    window.addEventListener("load", () => {
+    let pageTutorial = new tutorialPage();
+    pageTutorial.loadTutorial();
+    console.log("Tut js is running");
+  });
+  </script>
+</head>
+
+<body>
+  <div class="main div">
+    <div class="buttonDiv">
+      <button type="button" name="buttonBack" id="buttonBack" class="buttonBack">Back</button>
+      <button type="button" name="buttonForward" id="buttonForward" class="buttonForward">Forward</button>
+    </div>
+    <div class="imageDiv">
+      <img src="../page-tutorial/tutorial-images/firstImg.png" id="tutImg" class="tutImg">
+    </div>
+    <div class="DescriptionDiv" id="tutText" class="tutText">
+    </div>
+  </div>
+
+</body>
+
 </html>

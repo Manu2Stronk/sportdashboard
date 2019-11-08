@@ -1,0 +1,32 @@
+.buttonDiv {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 25px;
+}
+
+.buttonBack {
+  height: 50px;
+  width: 75px;
+}
+
+.buttonForward {
+  height: 50px;
+  width: 75px;
+}
+
+.imageDiv {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 25px;
+}
+
+.tutImg {
+  display: block;
+  width: 50%;
+  height: 50%;
+}
+
+.tutText {
+  width: 70%;
+  hight: 75px;
+}
