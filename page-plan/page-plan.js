@@ -20,7 +20,7 @@ class pagePlan {
       oQuerySnapshot.docs.forEach((oDocument) => {
         //Funktion die Pro Eintrag ausgeführt werden soll
       })
-    }
+    
 
     console.log("page-plan.html running");
     let buttonAddWorkout = document.getElementById("buttonAddWorkout");
