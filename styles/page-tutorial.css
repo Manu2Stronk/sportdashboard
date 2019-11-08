@@ -22,11 +22,11 @@
 
 .tutImg {
   display: block;
-  width: 50%;
-  height: 50%;
+  width: 45%;
+  height: 35%;
 }
 
 .tutText {
-  width: 70%;
-  hight: 75px;
+  display: flex;
+  justify-content: space-evenly;
 }
