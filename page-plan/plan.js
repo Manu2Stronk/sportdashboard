@@ -3,31 +3,39 @@ class Plan {
     // this.dropdown = dropdown;
   }
 
-  async loadAll(divWorkout, divListOfWorkouts, workouts, dropdown, id){
+  async loadAll(divWorkout, divListOfWorkouts, workouts, dropdown, id) {
     console.log("plan.loadAll()");
-
+    let oWorkout = new Workout();
     var oQuerySnapshotPlan = await firebase.firestore().collection("workouts").get();
     oQuerySnapshotPlan.docs.forEach((oDocument) => {
-      this.load(divWorkout, divListOfWorkouts, workouts, dropdown, id, oDocument);
+      oWorkout = this.load(divWorkout, divListOfWorkouts, workouts, dropdown, id, oDocument);
+      console.log("oWorkout: " + oWorkout.distance);
+      this.addWorkout(workouts, oWorkout);
       id = id + 1;
     })
+
+    this.sortWorkouts(workouts);
+    this.save(divWorkout, divListOfWorkouts, workouts, oWorkout, dropdown);
   }
 
   load(divWorkout, divListOfWorkouts, workouts, dropdown, id, oDocument) {
     console.log("plan.load()");
     var oWorkout = oDocument.data();
-    let oId = id;
-    let oTitle = oWorkout.title;
-    let oDate = oWorkout.date;
-    let oDistance = oWorkout.distance;
-    let oDuration = oWorkout.durationMM;
-    let oKindOfSport = oWorkout.sports;
-    let oDescription = oWorkout.description;
-    console.log("oTitle: " + oDate);
-    oWorkout = new Workout(oId, oTitle, oDate, oDistance, oDuration, oKindOfSport, oDescription);
-    console.log("oWorkout: " + Object.values(oWorkout));
-    this.addWorkout(workouts, oWorkout);
-    this.save(divWorkout, divListOfWorkouts, workouts, oWorkout, dropdown);
+
+    let title = oWorkout.title;
+    let date = oWorkout.date;
+    let distance = oWorkout.distance;
+    if (distance === 0) {
+      distance = "";
+    }
+    let duration = oWorkout.durationMM;
+    if (duration === 0) {
+      duration = "";
+    }
+    let kindOfSport = oWorkout.sports;
+    let discription = oWorkout.description;
+    oWorkout = new Workout(id, title, date, distance, duration, kindOfSport, discription);
+    return oWorkout;
   }
 
 
@@ -102,8 +110,11 @@ class Plan {
     while (dropdown.firstChild) {
       dropdown.removeChild(dropdown.firstChild);
     }
-
     divWorkout.style.display = "none";
+
+    for (var i = 0; i < workouts.length; i++) {
+      console.log("workouts_save(): " + Object.values(Object.values(workouts[i].id)));
+    }
 
     //creating new dropdown by generating new elements from each workout of workouts
     for (var i = 0; i < workouts.length; i++) {
@@ -135,20 +146,34 @@ class Plan {
       dateElement.value += placeholder + ":";
 
       let distancElement = document.createElement("input");
+
+
       let distanceValue = "0km / 0min";
 
-      if (this.arrayToString(Object.values(workouts[i].distance)) !== "") {
+      if (this.arrayToString(Object.values(workouts[i].distance)) !== "" || workouts[i].distance !== "") {
         distanceValue = this.arrayToString(Object.values(workouts[i].distance)) + "km";
+
       }
-      if (this.arrayToString(this.arrayToString(Object.values(workouts[i].duration))) !== "") {
+      if (this.arrayToString(this.arrayToString(Object.values(workouts[i].duration))) !== "" || workouts[i].duration !== "") {
         distanceValue = this.arrayToString(this.arrayToString(Object.values(workouts[i].duration)) + "min");
       }
       if (this.arrayToString(Object.values(workouts[i].distance)) !== "" && this.arrayToString(Object.values(workouts[i].duration)) !== "") {
         distanceValue = this.arrayToString(Object.values(workouts[i].distance)) + "km / " + this.arrayToString(Object.values(workouts[i].duration)) + "min";
+
+      }
+      if (workouts[i].distance !== "") {
+        distanceValue = workouts[i].distance + "km";
+      }
+      if (workouts[i].duration !== "") {
+        distanceValue = workouts[i].duration + "min";
+      }
+      if (workouts[i].duration !== "" &&  workouts[i].distance !== "") {
+        distanceValue = workouts[i].distance + "km / " + workouts[i].duration + "min";
       }
 
       // console.log("was drin steht: " + this.arrayToString(Object.values(workouts[i].distance)) !== "" && this.arrayToString(Object.values(workouts[i].duration)) !== "");
       console.log("distanceValue: " + distanceValue);
+
       distancElement.className += "input_Distance inputGeneral";
       distancElement.type = "text";
       distancElement.disabled = true;
