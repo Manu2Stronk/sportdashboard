@@ -3,10 +3,19 @@ class Plan {
     // this.dropdown = dropdown;
   }
 
-  load(oDocument, workouts, id) {
+  async loadAll(divWorkout, divListOfWorkouts, workouts, dropdown, id){
+    console.log("plan.loadAll()");
+
+    var oQuerySnapshotPlan = await firebase.firestore().collection("workouts").get();
+    oQuerySnapshotPlan.docs.forEach((oDocument) => {
+      this.load(divWorkout, divListOfWorkouts, workouts, dropdown, id, oDocument);
+      id = id + 1;
+    })
+  }
+
+  load(divWorkout, divListOfWorkouts, workouts, dropdown, id, oDocument) {
     console.log("plan.load()");
     var oWorkout = oDocument.data();
-
     let oId = id;
     let oTitle = oWorkout.title;
     let oDate = oWorkout.date;
@@ -18,6 +27,7 @@ class Plan {
     oWorkout = new Workout(oId, oTitle, oDate, oDistance, oDuration, oKindOfSport, oDescription);
     console.log("oWorkout: " + Object.values(oWorkout));
     this.addWorkout(workouts, oWorkout);
+    this.save(divWorkout, divListOfWorkouts, workouts, oWorkout, dropdown);
   }
 
 

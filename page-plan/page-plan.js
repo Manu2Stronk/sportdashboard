@@ -10,7 +10,6 @@ class pagePlan {
       htmlContent = await html.text();
     }
     this._app.setPageContent(htmlContent);
-
     this.loadAllActivities();
   }
 
@@ -20,19 +19,6 @@ class pagePlan {
     let workouts = new Array();
     let workout = new Workout();
     let id = 0;
-
-    //load activities from the firebase firestore
-    var oQuerySnapshotPlan = await firebase.firestore().collection("workouts").get();
-    console.log("oQuerySnapshotPlan: " + Object.values(oQuerySnapshotPlan));
-    oQuerySnapshotPlan.docs.forEach((oDocument) => {
-      console.log("oDucument: " + Object.values(oDocument));
-      plan.load(oDocument, workouts, id);
-      id = id + 1;
-      //Funktion die Pro Eintrag ausgeführt werden soll
-    })
-
-
-
     console.log("page-plan.html running");
     let buttonAddWorkout = document.getElementById("buttonAddWorkout");
     let dropdown = document.getElementById("dropdown");
@@ -40,8 +26,14 @@ class pagePlan {
     let divListOfWorkouts = document.getElementById("divListOfWorkouts");
     let textDistance = document.getElementById("textDistance").textContent;
 
-    plan.save(divWorkout, divListOfWorkouts, workouts, workout, dropdown);
-    
+    //load activities from the firebase firestore
+    plan.loadAll(divWorkout, divListOfWorkouts, workouts, dropdown, id)
+
+
+
+
+
+
     console.log("textDistance: " + textDistance);
     let distance = "";
     let duration = "";
@@ -84,6 +76,7 @@ class pagePlan {
         } catch {}
       }
     });
+
     buttonChangeRight.addEventListener("click", () => {
       textDistance = document.getElementById("textDistance").textContent;
       textDistance.trim();
