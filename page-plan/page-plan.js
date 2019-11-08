@@ -15,20 +15,12 @@ class pagePlan {
   }
 
   async loadAllActivities() {
-    // 
-    // var firebaseConfig = {
-    //   apiKey: "AIzaSyDQJNTCymv5mP0bAjkdbab-cWpAVZFJHMo",
-    //   authDomain: "trainingsplan-88a5b.firebaseapp.com",
-    //   databaseURL: "https://trainingsplan-88a5b.firebaseio.com",
-    //   projectId: "trainingsplan-88a5b",
-    //   storageBucket: "trainingsplan-88a5b.appspot.com",
-    //   messagingSenderId: "189292657427",
-    //   appId: "1:189292657427:web:71e70144eacecb3b7c78e6",
-    //   measurementId: "G-8ZSZVF71V1"
-    // };
-    // let firebaseTrainingsplan = new FirebaseTrainingsplan();
-    // let firebase = firebaseTrainingsplan.init();
-    // firebaseTrainingsplan.write(firebase);
+      //load activities from the firebase firestore
+      var oQuerySnapshotPlan = await firebase.firestore().collection("workouts").get();
+      oQuerySnapshot.docs.forEach((oDocument) => {
+        //Funktion die Pro Eintrag ausgeführt werden soll
+      })
+    }
 
     console.log("page-plan.html running");
     let buttonAddWorkout = document.getElementById("buttonAddWorkout");
@@ -83,7 +75,6 @@ class pagePlan {
           duration = plan.changeDuration();
         } catch {}
       }
-
     });
     buttonChangeRight.addEventListener("click", () => {
       textDistance = document.getElementById("textDistance").textContent;
