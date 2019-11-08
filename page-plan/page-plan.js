@@ -17,10 +17,10 @@ class pagePlan {
   async loadAllActivities() {
       //load activities from the firebase firestore
       var oQuerySnapshotPlan = await firebase.firestore().collection("workouts").get();
-      oQuerySnapshot.docs.forEach((oDocument) => {
+      oQuerySnapshotPlan.docs.forEach((oDocument) => {
         //Funktion die Pro Eintrag ausgeführt werden soll
       })
-    
+
 
     console.log("page-plan.html running");
     let buttonAddWorkout = document.getElementById("buttonAddWorkout");
