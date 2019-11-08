@@ -21,14 +21,16 @@ class pagePlan {
     let workout = new Workout();
     let id = 0;
 
-      //load activities from the firebase firestore
-      var oQuerySnapshotPlan = await firebase.firestore().collection("workouts").get();
-      console.log("oQuerySnapshotPlan: " + Object.values(oQuerySnapshotPlan));
-      oQuerySnapshotPlan.docs.forEach((oDocument) => {
-        console.log("oDucument: " + Object.values(oDocument));
-        plan.load(oDocument);
-        //Funktion die Pro Eintrag ausgeführt werden soll
-      })
+    //load activities from the firebase firestore
+    var oQuerySnapshotPlan = await firebase.firestore().collection("workouts").get();
+    console.log("oQuerySnapshotPlan: " + Object.values(oQuerySnapshotPlan));
+    oQuerySnapshotPlan.docs.forEach((oDocument) => {
+      console.log("oDucument: " + Object.values(oDocument));
+      plan.load(oDocument, workouts, id);
+      id = id + 1;
+      //Funktion die Pro Eintrag ausgeführt werden soll
+    })
+
 
 
     console.log("page-plan.html running");
@@ -38,6 +40,8 @@ class pagePlan {
     let divListOfWorkouts = document.getElementById("divListOfWorkouts");
     let textDistance = document.getElementById("textDistance").textContent;
 
+    plan.save(divWorkout, divListOfWorkouts, workouts, workout, dropdown);
+    
     console.log("textDistance: " + textDistance);
     let distance = "";
     let duration = "";

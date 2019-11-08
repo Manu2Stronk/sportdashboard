@@ -3,19 +3,23 @@ class Plan {
     // this.dropdown = dropdown;
   }
 
-  load(oDocument){
+  load(oDocument, workouts, id) {
     console.log("plan.load()");
     var oWorkout = oDocument.data();
 
-    let oId = oWorkout.id;
+    let oId = id;
     let oTitle = oWorkout.title;
     let oDate = oWorkout.date;
     let oDistance = oWorkout.distance;
-    let oDuration = oWorkout.duration;
-    let oKindOfSport = oWorkout.kindOfSport;
+    let oDuration = oWorkout.durationMM;
+    let oKindOfSport = oWorkout.sports;
     let oDescription = oWorkout.description;
     console.log("oTitle: " + oDate);
+    oWorkout = new Workout(oId, oTitle, oDate, oDistance, oDuration, oKindOfSport, oDescription);
+    console.log("oWorkout: " + Object.values(oWorkout));
+    this.addWorkout(workouts, oWorkout);
   }
+
 
   create(divWorkout) {
     console.log("plan.create()");
