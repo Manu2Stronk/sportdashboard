@@ -1,3 +1,7 @@
+body {
+  background-color: #f7f7f7;
+}
+
 .buttonDiv {
   display: flex;
   justify-content: space-evenly;
@@ -7,26 +11,40 @@
 .buttonBack {
   height: 50px;
   width: 75px;
+  border-radius: 20px;
+  background-color: white;
 }
 
 .buttonForward {
   height: 50px;
   width: 75px;
+  border-radius: 20px;
+  background-color: white;
 }
 
 .imageDiv {
   display: flex;
   justify-content: space-evenly;
   margin-top: 25px;
+  margin-bottom: 25px;
+
 }
 
 .tutImg {
   display: block;
   width: 45%;
   height: 35%;
+  box-shadow: 2px 2px 2px 1px gray;
+}
+
+.outerTextDiv {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .tutText {
-  display: flex;
-  justify-content: space-evenly;
+  width: 100%;
+
 }
