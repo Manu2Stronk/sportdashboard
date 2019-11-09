@@ -11,7 +11,6 @@ class Plan {
       oWorkout = this.load(divWorkout, divListOfWorkouts, workouts, dropdown, id, oDocument);
       console.log("oWorkout: " + oWorkout.distance);
       this.addWorkout(workouts, oWorkout);
-      id = id + 1;
     })
 
     this.sortWorkouts(workouts);
@@ -20,8 +19,11 @@ class Plan {
 
   load(divWorkout, divListOfWorkouts, workouts, dropdown, id, oDocument) {
     console.log("plan.load()");
-    var oWorkout = oDocument.data();
 
+
+
+    var oWorkout = oDocument.data();
+    id = oDocument.id;
     let title = oWorkout.title;
     let date = oWorkout.date;
     let distance = oWorkout.distance;
@@ -38,6 +40,159 @@ class Plan {
     return oWorkout;
   }
 
+
+  saveAll(workout) {
+    console.log("plan.saveAll()");
+
+    let distance = this.arrayToString(Object.values(workout.distance));
+    let duration = this.arrayToString(Object.values(workout.duration));
+    if (distance === "") {
+      distance = 0;
+    }
+    if (duration === "") {
+      duration = 0;
+    }
+    var oActivity = {
+      title: workout.title,
+      date: workout.date,
+      distance: distance,
+      durationMM: duration,
+      sports: workout.kindOfSport,
+      discription: workout.discription
+    }
+
+    firebase.firestore().collection("workouts").doc().set(oActivity);
+
+  }
+
+
+  save(divWorkout, divListOfWorkouts, workouts, workout, dropdown) {
+    console.log("plan.save()");
+    //delete All Elements of dropdown
+    while (dropdown.firstChild) {
+      dropdown.removeChild(dropdown.firstChild);
+    }
+    divWorkout.style.display = "none";
+
+    // this.saveAll(workout);
+
+    //creating new dropdown by generating new elements from each workout of workouts
+    for (var i = 0; i < workouts.length; i++) {
+      // def div-Element
+      let divElement = document.createElement("div");
+      divElement.className += "workoutElement";
+      divElement.id = "workoutElement";
+      divElement.setAttribute("data-id", workouts[i].id);
+
+      // def buttonElement
+      let buttonElement = document.createElement("input");
+      buttonElement.className += "buttonCloseWorkout";
+      buttonElement.value += "x";
+      buttonElement.type = "button";
+      buttonElement.id = "buttonCloseWorkout";
+
+      let titleElement = document.createElement("input");
+      titleElement.className += "inputTitle inputGeneral";
+      titleElement.type = "text";
+      titleElement.disabled = true;
+      let inputValue = Object.values(Object.values(workouts[i].title));
+      let placeholder = this.arrayToString(inputValue);
+      titleElement.value += placeholder;
+
+      let dateElement = document.createElement("input");
+      dateElement.className += "inputDate inputGeneral";
+      dateElement.type = "text";
+      dateElement.disabled = true;
+      inputValue = Object.values(Object.values(workouts[i].date));
+      placeholder = this.arrayToString(inputValue);
+      dateElement.value += placeholder + ":";
+
+      let distancElement = document.createElement("input");
+
+
+      let distanceValue = "0km / 0min";
+
+      try {
+        if (this.arrayToString(Object.values(workouts[i].distance)) !== "" || workouts[i].distance !== "") {
+          distanceValue = this.arrayToString(Object.values(workouts[i].distance)) + "km";
+        }
+        if (this.arrayToString(this.arrayToString(Object.values(workouts[i].duration))) !== "" || workouts[i].duration !== "") {
+          distanceValue = this.arrayToString(this.arrayToString(Object.values(workouts[i].duration)) + "min");
+        }
+        if (this.arrayToString(Object.values(workouts[i].distance)) !== "" && this.arrayToString(Object.values(workouts[i].duration)) !== "") {
+          distanceValue = this.arrayToString(Object.values(workouts[i].distance)) + "km / " + this.arrayToString(Object.values(workouts[i].duration)) + "min";
+        }
+      } catch {}
+
+      try {
+        if (workouts[i].distance !== "") {
+          distanceValue = workouts[i].distance + "km";
+        }
+        if (workouts[i].duration !== "") {
+          distanceValue = workouts[i].duration + "min";
+        }
+        if (workouts[i].duration !== "" && workouts[i].distance !== "") {
+          distanceValue = workouts[i].distance + "km / " + workouts[i].duration + "min";
+        }
+      } catch {}
+
+      // console.log("was drin steht: " + this.arrayToString(Object.values(workouts[i].distance)) !== "" && this.arrayToString(Object.values(workouts[i].duration)) !== "");
+      console.log("distanceValue: " + distanceValue);
+
+      distancElement.className += "input_Distance inputGeneral";
+      distancElement.type = "text";
+      distancElement.disabled = true;
+      distancElement.value += distanceValue;
+
+      let kindOfSportElement = document.createElement("input");
+      let kindOfSportValue = "";
+      kindOfSportValue = this.arrayToString(Object.values(workouts[i].kindOfSport));
+      kindOfSportElement.className += "inputKindOfSport inputGeneral";
+      kindOfSportElement.type = "text";
+      kindOfSportElement.disabled = true;
+
+      if (kindOfSportValue === "Bike") {
+        kindOfSportElement.value += "🚴";
+      }
+      if (kindOfSportValue === "Run") {
+        kindOfSportElement.value += "🏃";
+      }
+      if (kindOfSportValue === "Swim") {
+        kindOfSportElement.value += "🏊";
+      }
+      if (kindOfSportValue === "Athletics") {
+        kindOfSportElement.value += "🏋️";
+      }
+      let lineElement = document.createElement("hr");
+
+      // add to dropdown
+      dropdown.appendChild(divElement);
+      divElement.appendChild(buttonElement);
+      divElement.appendChild(dateElement);
+      divElement.appendChild(lineElement);
+      divElement.appendChild(kindOfSportElement);
+      divElement.appendChild(distancElement);
+      divElement.appendChild(titleElement);
+
+      console.log("_workouts[].id: " + workouts[i].id);
+
+      //add delete function to buttonElement
+
+      buttonElement.addEventListener("click", (e) => {
+        e.stopPropagation();
+        let id = e.target.parentElement.getAttribute("data-id");
+        console.log(id);
+        firebase.firestore().collection("workouts").doc(id).delete();
+        divElement.parentNode.removeChild(divElement);
+        workouts.splice(workouts.indexOf(workout), 1);
+
+
+        for (var i = 0; i < workouts.length; i++) {
+          console.log("workoutsDelete: " + Object.values(Object.values(workouts[i])));
+        }
+      });
+    }
+  }
 
   create(divWorkout) {
     console.log("plan.create()");
@@ -100,123 +255,6 @@ class Plan {
     }
     for (var i = 0; i < workouts.length; i++) {
       console.log("workouts_sort: " + Object.values(Object.values(workouts[i])));
-    }
-  }
-
-  save(divWorkout, divListOfWorkouts, workouts, workout, dropdown) {
-    console.log("plan.save()");
-
-    //delete All Elements of dropdown
-    while (dropdown.firstChild) {
-      dropdown.removeChild(dropdown.firstChild);
-    }
-    divWorkout.style.display = "none";
-
-    for (var i = 0; i < workouts.length; i++) {
-      console.log("workouts_save(): " + Object.values(Object.values(workouts[i].id)));
-    }
-
-    //creating new dropdown by generating new elements from each workout of workouts
-    for (var i = 0; i < workouts.length; i++) {
-      // def div-Element
-      let divElement = document.createElement("div");
-      divElement.className += "workoutElement";
-      divElement.id = "workoutElement";
-      // def buttonElement
-      let buttonElement = document.createElement("input");
-      buttonElement.className += "buttonCloseWorkout";
-      buttonElement.value += "x";
-      buttonElement.type = "button";
-      buttonElement.id = "buttonCloseWorkout";
-
-      let titleElement = document.createElement("input");
-      titleElement.className += "inputTitle inputGeneral";
-      titleElement.type = "text";
-      titleElement.disabled = true;
-      let inputValue = Object.values(Object.values(workouts[i].title));
-      let placeholder = this.arrayToString(inputValue);
-      titleElement.value += placeholder;
-
-      let dateElement = document.createElement("input");
-      dateElement.className += "inputDate inputGeneral";
-      dateElement.type = "text";
-      dateElement.disabled = true;
-      inputValue = Object.values(Object.values(workouts[i].date));
-      placeholder = this.arrayToString(inputValue);
-      dateElement.value += placeholder + ":";
-
-      let distancElement = document.createElement("input");
-
-
-      let distanceValue = "0km / 0min";
-
-      if (this.arrayToString(Object.values(workouts[i].distance)) !== "" || workouts[i].distance !== "") {
-        distanceValue = this.arrayToString(Object.values(workouts[i].distance)) + "km";
-
-      }
-      if (this.arrayToString(this.arrayToString(Object.values(workouts[i].duration))) !== "" || workouts[i].duration !== "") {
-        distanceValue = this.arrayToString(this.arrayToString(Object.values(workouts[i].duration)) + "min");
-      }
-      if (this.arrayToString(Object.values(workouts[i].distance)) !== "" && this.arrayToString(Object.values(workouts[i].duration)) !== "") {
-        distanceValue = this.arrayToString(Object.values(workouts[i].distance)) + "km / " + this.arrayToString(Object.values(workouts[i].duration)) + "min";
-
-      }
-      if (workouts[i].distance !== "") {
-        distanceValue = workouts[i].distance + "km";
-      }
-      if (workouts[i].duration !== "") {
-        distanceValue = workouts[i].duration + "min";
-      }
-      if (workouts[i].duration !== "" &&  workouts[i].distance !== "") {
-        distanceValue = workouts[i].distance + "km / " + workouts[i].duration + "min";
-      }
-
-      // console.log("was drin steht: " + this.arrayToString(Object.values(workouts[i].distance)) !== "" && this.arrayToString(Object.values(workouts[i].duration)) !== "");
-      console.log("distanceValue: " + distanceValue);
-
-      distancElement.className += "input_Distance inputGeneral";
-      distancElement.type = "text";
-      distancElement.disabled = true;
-      distancElement.value += distanceValue;
-
-      let kindOfSportElement = document.createElement("input");
-      let kindOfSportValue = "";
-      kindOfSportValue = this.arrayToString(Object.values(workouts[i].kindOfSport));
-      kindOfSportElement.className += "inputKindOfSport inputGeneral";
-      kindOfSportElement.type = "text";
-      kindOfSportElement.disabled = true;
-
-      if (kindOfSportValue === "Bike") {
-        kindOfSportElement.value += "🚴";
-      }
-      if (kindOfSportValue === "Run") {
-        kindOfSportElement.value += "🏃";
-      }
-      if (kindOfSportValue === "Swim") {
-        kindOfSportElement.value += "🏊";
-      }
-      if (kindOfSportValue === "Athletics") {
-        kindOfSportElement.value += "🏋️";
-      }
-      let lineElement = document.createElement("hr");
-
-      // add to dropdown
-      dropdown.appendChild(divElement);
-      divElement.appendChild(buttonElement);
-      divElement.appendChild(dateElement);
-      divElement.appendChild(lineElement);
-      divElement.appendChild(kindOfSportElement);
-      divElement.appendChild(distancElement);
-      divElement.appendChild(titleElement);
-
-      //add delete function to buttonElement
-      buttonElement.addEventListener("click", () => {
-        divElement.parentNode.removeChild(divElement);
-        workouts.splice(workouts.indexOf(workout), 1);
-        for (var i = 0; i < workouts.length; i++) {
-          console.log("workoutsDelete: " + Object.values(Object.values(workouts[i])));
-        }
-      });
     }
   }
 

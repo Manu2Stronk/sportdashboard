@@ -34,6 +34,11 @@ class pagePlan {
       let buttonElement = plan.create(divWorkout);
     });
 
+    // buttonSaveAll.addEventListener("click", () => {
+    //   console.log("buttonSaveAll clicked");
+    //   plan.saveAll(workouts);
+    // });
+
     buttonSave.addEventListener("click", () => {
       console.log("buttonSave clicked");
       let title = plan.getTitle();
@@ -47,7 +52,10 @@ class pagePlan {
       id = id + 1;
       console.log("workout: " + Object.values(workout));
       plan.checkValues(title, date, divWorkout, divListOfWorkouts, workouts, workout, dropdown);
+      plan.saveAll(workout);
     });
+
+
 
     let distance = "";
     let duration = "";
