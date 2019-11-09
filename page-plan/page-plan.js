@@ -29,21 +29,8 @@ class pagePlan {
     //load activities from the firebase firestore
     plan.loadAll(divWorkout, divListOfWorkouts, workouts, dropdown, id)
 
-
-
-
-
-
-    console.log("textDistance: " + textDistance);
-    let distance = "";
-    let duration = "";
-
-
-
     buttonAddWorkout.addEventListener("click", () => {
       console.log("buttonAddWorkout clicked");
-      // let title = document.getElementById("workoutTitle").value;
-      // console.log("title:" + title);
       let buttonElement = plan.create(divWorkout);
     });
 
@@ -62,6 +49,8 @@ class pagePlan {
       plan.checkValues(title, date, divWorkout, divListOfWorkouts, workouts, workout, dropdown);
     });
 
+    let distance = "";
+    let duration = "";
     buttonChangeLeft.addEventListener("click", () => {
       textDistance = document.getElementById("textDistance").textContent;
       if (textDistance.trim() === "Distance") {
@@ -78,6 +67,8 @@ class pagePlan {
     });
 
     buttonChangeRight.addEventListener("click", () => {
+
+
       textDistance = document.getElementById("textDistance").textContent;
       textDistance.trim();
       if (textDistance.trim() === "Distance") {
