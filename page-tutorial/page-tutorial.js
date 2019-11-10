@@ -2,8 +2,8 @@
 class pageTutorial{
   constructor(app){
     this._app = app;
-    pageTutorial.loadTutorialImgs();
-    pageTutorial.loadTutorialText();
+    this.pageTutorial.loadTutorialImgs();
+    this.pageTutorial.loadTutorialText();
   }
 
 async show(){
