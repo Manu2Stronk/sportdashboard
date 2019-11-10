@@ -100,7 +100,7 @@ class pageTutorial {
             if (countText >= 0) {
                 textDiv.innerHTML = tutText[countText];
             } else {
-                countImg = tutText.length - 1;
+                countText = tutText.length - 1;
                 textDiv.innerHTML = tutText[countText]
             }
         });
