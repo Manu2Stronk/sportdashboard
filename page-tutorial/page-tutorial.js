@@ -3,9 +3,7 @@ class pageTutorial{
     this._app = app;
     that = this;
   }
-class tutorialPage {
-  constructor(){
-  }
+
 async show(){
     let html = await fetch("page-tutorial/page-tutorial.html")
     let htmlContent = "";
