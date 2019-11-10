@@ -18,6 +18,11 @@ class App{
   _handleRoute(){
     let pageUrl = location.hash.slice(1);
     let matches = null;
+    
+    //set default page to the tutorial page (ideally a condstant)
+    if (!pageUrl) {
+      pageUrl = this._pages[3].url;
+    }
 
     let page = this._pages.find(p => matches = pageUrl.match(p.url));
     //location.href = ("." + page.resource);
