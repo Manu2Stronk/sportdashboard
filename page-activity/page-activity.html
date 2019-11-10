@@ -1,13 +1,12 @@
 <div class="manualInsert" id="pageContent">
-
-  <!-- Page Title -->
+  <!-- Page Title for button reload and add-->
   <div class="pageTitle">
     <h1>Activity Page</h1>
     <button class="addActivityB" onclick="ActivityPage.openAddActivityModal()">Add Activity ➕</button>
     <button class="addActivityB" onclick="ActivityPage.loadAllActivities()">🔄</button>
   </div>
 
-  <!-- Activity Table -->
+  <!-- Activity Table which displays the activities-->
   <table id = "activity" class="activityTable" style="overflow-x:auto;">
     <thead>
       <tr>
@@ -19,14 +18,12 @@
         <th>Calories</th>
         <th>Heart Rate</th>
         <th>Löschen</th>
-
       </tr>
     </thead>
-
     <tbody id="idActivityTableBody" />
   </table>
 
-  <!-- Add Activity Modal/Form -->
+  <!-- Add Activity Modal/Form to add new Activities-->
   <div id="idAddActivityModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -34,41 +31,45 @@
         <button onclick="ActivityPage.closeAddActivityModal()" class="close">&times;</button>
       </div>
       <div class="modal-body">
+        <!-- Form to insert the values -->
         <form class="addActivityForm" onsubmit="ActivityPage.onSaveNewActivity(event); console.log('Submit!');">
+          <!-- Input to insert the name -->
           <div class="formContainer">
             Name: <input id="idAddActivityForm-nameField" type="text" name="name" placeholder="Name" required>
           </div>
-
+          <!-- Dropdown to select the kind of sport -->
           <div class="formContainer">
-            Type:<select id="idAddActivityForm-typeField" name="Sportart">
+            Type:<select id="idAddActivityForm-typeField" name="Sport">
               <option value="Swim"> Swim </option>
               <option value="Bike"> Bike </option>
               <option value="Run"> Run </option>
               <option value="other"> other </option>
             </select>
           </div>
-
+          <!-- Input to insert the date -->
           <div class="formContainer">
-            Date: <input type="date" placeholder="Date" id="idAddActivityForm-dateField" required />
+            Date: <input type="date" placeholder="Date of the Activity" id="idAddActivityForm-dateField" required />
           </div>
+          <!-- Input to insert the Duration of the workout -->
           <div id="duration" class="controls duration">
             <input type="text" id="idAddActivityForm-time-hour" class="input-mini" value="0" maxlength="2"> :
             <input type="text" id="idAddActivityForm-time-minute" class="input-mini" value="0" maxlength="2"> :
             <input type="text" id="idAddActivityForm-time-second" class="input-mini" value="0" maxlength="2">
             <span class="format-example">(hh:mm:ss)</span>
           </div>
-
+          <!-- Input to insert the Calories -->
           <div class="formContainer">
             Calories: <input id="idAddActivityForm-caloriesField" type="number" placeholder="Calories" maxlength="9" required>
           </div>
-
+          <!-- Input to insert the distance -->
           <div class="formContainer">
             Distance: <input id="idAddActivityForm-distanceField" type="number" placeholder="Distance" maxlength="9" required>
           </div>
+          <!-- Input to insert the heart rate -->
           <div class="formContainer">
           Heart Rate: <input id="idAddActivityForm-heartField" type="number" placeholder="Heart Rate" maxlength="3" required>
           </div>
-
+        <!-- Submit button -->  
         <div class="modal-footer">
           <input type="submit" value="Save" />
         </div>

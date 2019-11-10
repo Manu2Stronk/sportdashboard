@@ -5,6 +5,7 @@ class pageActivity{
     this._app = app;
     that = this;
   }
+
   async show(){
     let html = await fetch("page-activity/page-activity.html")
     let htmlContent = "";
@@ -12,10 +13,13 @@ class pageActivity{
       htmlContent = await html.text();
     }
     this._app.setPageContent(htmlContent);
+    var loada = document.createElement('div'),
+        load;
+        load = "<div class='loader'></div>"
+      loada.innerHTML = load;
 
+    // Timeout to load the data from the database -> duration ~68ms
     setTimeout(() => {this.loadAllActivities()}, 2000);
-    //this.loadAllActivities();
-
   }
 
     /**
@@ -53,14 +57,14 @@ class pageActivity{
       sRow += "<td>" + this.formatAverageSpeed(oActivity) + "</td>";
       sRow += "<td>" + oActivity.cal + " kcal" + "</td>";
       sRow += "<td>" + oActivity.heart_rate + "</td>";
+
       var buttonRow = document.createElement("td");
       var loeschenBtn = document.createElement("BUTTON");
+
       loeschenBtn.innerHTML = "🗑️";
       loeschenBtn.classList.add("addActivityB");
       loeschenBtn.addEventListener("click", () => {
-        console.log(oDocument.ref);
         oDocument.ref.delete().then(function() {
-            console.log("Document successfully deleted!");
             that.loadAllActivities();
         }).catch(function(error) {
             console.error("Error removing document: ", error);
@@ -123,18 +127,8 @@ class pageActivity{
             this.closeAddActivityModal();
             this.loadAllActivities();
         });
-
         return false;
     };
-    /**
-    * Deletes selected Datasets
-    * @public
-    */
-   deleteRow(oEvent, ) {
-     //var dRow = document.getElementById();
-     document.getElementById("activity").deleteRow(0);
-   };
-
 
     /* Formatter */
 
@@ -153,7 +147,7 @@ class pageActivity{
     }
 
     /**
-     * Format function for the duration
+     * Format function for the duration of an Activity
      * @protcted
      */
     formatDuration(oActivity) {
@@ -183,6 +177,3 @@ class pageActivity{
 }
 
 ActivityPage = new pageActivity();
-
-// Timeout to load the data from the database -> duration ~68ms
-//setTimeout(() => {ActivityPage.loadAllActivities()}, 2000);

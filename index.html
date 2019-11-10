@@ -20,7 +20,7 @@
   <script src="./page-plan/page-plan.js"> </script>
   <script src="./page-plan/plan.js"></script>
   <script src="./page-plan/workout.js"></script>
-  <script src="./page-tutorial/page-tutorial.js" charset="utf-8"></script>
+  <script src="./page-tutorial/page-tutorial.js"></script>
 
 
 
@@ -65,13 +65,17 @@
         url: "/plan",
         resource: "/page-plan/page-plan.html",
         klasse: pagePlan
+      },
+      {
+        url: "/tutorial",
+        resource: "/page-tutorial/page-tutorial.html",
+        klasse: pageTutorial
       }
     ];
 
     window.addEventListener("load", () => {
       let app = new App(pages);
       app.run();
-      console.log("index: App running");
     });
   </script>
 
