@@ -1,12 +1,18 @@
-<<<<<<< HEAD
 class pageTutorial{
   constructor(app){
     this._app = app;
     that = this;
   }
-=======
 class tutorialPage {
   constructor(){
+  }
+async show(){
+    let html = await fetch("page-tutorial/page-tutorial.html")
+    let htmlContent = "";
+    if(html.ok){
+      htmlContent = await html.text();
+    }
+    this._app.setPageContent(htmlContent);
   }
 
 async loadTutorialImgs() {
@@ -98,16 +104,5 @@ async loadTutorialText(){
       textDiv.innerHTML = tutText[countText]
     }
   });
-
-
-
 }
-
-
-
-
-
-
-
 }
->>>>>>> f0afe5f4f8af79c4ad6fc3e529a56c70c063f3c2
