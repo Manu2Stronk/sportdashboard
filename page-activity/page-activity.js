@@ -33,11 +33,17 @@ class pageActivity{
         oActivityTable.removeChild(oActivityTable.firstChild);
       }
 
+      //show table busy indicator
+      var oBusyIndicator = document.getElementById("idActivityTableSpinner");
+      oBusyIndicator.style.display = "flex";
+
       //load activities from the firebase firestore
       var oQuerySnapshot = await firebase.firestore().collection("activities").get();
       oQuerySnapshot.docs.forEach((oDocument) => {
         this.renderActivity(oDocument);
-      })
+      });
+
+      oBusyIndicator.style.display = "none";
     }
 
     /**
