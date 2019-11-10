@@ -4,6 +4,7 @@ class App{
 
     //when page is reloaded -> it shows the last screen
     this._handleRoute();
+    // TutorialPage.show();
   }
 
   run(){
@@ -30,3 +31,4 @@ class App{
     container.innerHTML = htmlContent;
   }
 }
+// TutorialPage = new pageTutorial();
