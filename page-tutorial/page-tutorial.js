@@ -106,4 +106,4 @@ async loadTutorialText(){
   });
 }
 }
-ActivityPage = new pageActivity();
+TutorialPage = new pageTutorial();
