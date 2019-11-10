@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+<<<<<<< HEAD
   <head>
     <meta charset="utf-8">
     <title></title>
@@ -7,4 +8,35 @@
   <body>
     Tutorial
   </body>
+=======
+
+<head>
+  <meta charset="utf-8">
+  <script src="./page-tutorial.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="../styles/page-tutorial.css">
+  <script type="text/javascript">
+    window.addEventListener("load", () => {
+      let pageTutorial = new tutorialPage();
+      pageTutorial.loadTutorialImgs();
+      pageTutorial.loadTutorialText();
+      console.log("Tut js is running");
+    });
+  </script>
+</head>
+
+<body>
+  <div class="main div">
+    <div class="buttonDiv">
+      <button type="button" name="buttonBack" id="buttonBack" class="buttonBack">Back</button>
+      <button type="button" name="buttonForward" id="buttonForward" class="buttonForward">Forward</button>
+    </div>
+    <div class="imageDiv">
+      <img src="../page-tutorial/tutorial-images/firstImg.png" id="tutImg" class="tutImg">
+    </div>
+    <div class="outerTextDiv">
+      <p  id="tutText" class="tutText"></p>
+    </div>
+  </div>
+</body>
+>>>>>>> f0afe5f4f8af79c4ad6fc3e529a56c70c063f3c2
 </html>
