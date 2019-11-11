@@ -4,13 +4,10 @@ class App{
 
     //when page is reloaded -> it shows the last screen
     this._handleRoute();
-    // TutorialPage.show();
   }
 
   run(){
-    console.log("App running");
     window.addEventListener("hashchange", ()=> {
-        console.log("hashchange");
         this._handleRoute();
     });
   }
@@ -18,14 +15,13 @@ class App{
   _handleRoute(){
     let pageUrl = location.hash.slice(1);
     let matches = null;
-    
+
     //set default page to the tutorial page (ideally a condstant)
     if (!pageUrl) {
       pageUrl = this._pages[3].url;
     }
 
     let page = this._pages.find(p => matches = pageUrl.match(p.url));
-    //location.href = ("." + page.resource);
 
     this.currentPageObj = new page.klasse(this);
     this.currentPageObj.show();
@@ -36,4 +32,3 @@ class App{
     container.innerHTML = htmlContent;
   }
 }
-// TutorialPage = new pageTutorial();
