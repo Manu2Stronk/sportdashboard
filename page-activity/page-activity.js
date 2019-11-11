@@ -15,8 +15,8 @@ class pageActivity{
     this._app.setPageContent(htmlContent);
     var loada = document.createElement('div'),
         load;
-        load = "<div class='loader'></div>"
-      loada.innerHTML = load;
+        load = "<div class='loader'></div>";
+        loada.innerHTML = load;
 
     // Timeout to load the data from the database -> duration ~68ms
     setTimeout(() => {this.loadAllActivities()}, 2000);
