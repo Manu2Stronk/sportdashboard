@@ -65,11 +65,11 @@ class pageActivity{
       sRow += "<td>" + oActivity.heart_rate + "</td>";
 
       var buttonRow = document.createElement("td");
-      var loeschenBtn = document.createElement("BUTTON");
+      var deleteBtn = document.createElement("BUTTON");
 
-      loeschenBtn.innerHTML = "🗑️";
-      loeschenBtn.classList.add("addActivityB");
-      loeschenBtn.addEventListener("click", () => {
+      deleteBtn.innerHTML = "🗑️";
+      deleteBtn.classList.add("addActivityB");
+      deleteBtn.addEventListener("click", () => {
         oDocument.ref.delete().then(function() {
             that.loadAllActivities();
         }).catch(function(error) {
@@ -79,7 +79,7 @@ class pageActivity{
 
       temp.innerHTML = sRow;
       temp.appendChild(buttonRow);
-      buttonRow.appendChild(loeschenBtn);
+      buttonRow.appendChild(deleteBtn);
       oActivityTable.appendChild(temp);
     }
 
@@ -177,7 +177,6 @@ class pageActivity{
           oActivity.durationMM * 60 +
           oActivity.durationSS,
           iAvgSpeed = oActivity.distance / iDuraitonInSeconds * 3600;
-
       return Math.floor(iAvgSpeed * 100) / 100;
     }
 }
