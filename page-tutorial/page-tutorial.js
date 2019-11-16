@@ -35,7 +35,7 @@ class pageTutorial {
             "../page-tutorial/tutorial-images/Plan-Page-Add-Workout.png",
             "../page-tutorial/tutorial-images/Add-Data-To-Workout.png",
             "../page-tutorial/tutorial-images/Save-Plan.png",
-            "../page-tutorial/tutorial-images/Save-Plan.png"];
+            "../page-tutorial/tutorial-images/Start-Page.PNG"];
         let countImg = 0;
 
         nextBtn.addEventListener("click", function () {
@@ -73,7 +73,7 @@ class pageTutorial {
             "This is where you add the Data of your last activity. The data you add here will also be displayed on the activity page you saw in the last two steps. Now click on forward again to go ahead.",
             "If you are happy with your entries you can use the save button, as highlighted in the demo picture.",
             "If you don’t want to save your entries however you can back out using the back button, as highlighted in the demo picture.",
-            "Now to see your new activity you need to refresh the page. You can do this by clicking the highlighted button as shown in the demo picture.",
+            "Youre changes ar now saved to our database and you can view them in the table. Should someone else have made changes you can refresh the table. You can do this by clicking the highlighted button as shown in the demo picture.",
             "If you want to delete one of your activities you can do so by clicking on the delete button, as shown in our image",
             "Now we´re going to move on to our analytics page. To do so plaese click on the analytics link at the top of our wesite.",
             "The Analytical page shows you two types of data. The first four entries represent your last activity. The last four shows data from activities from the last seven days.",
