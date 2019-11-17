@@ -52,7 +52,10 @@ class pagePlan {
       id = id + 1;
       console.log("workout: " + Object.values(workout));
       plan.checkValues(title, date, divWorkout, divListOfWorkouts, workouts, workout, dropdown);
-      plan.saveAll(workout);
+      if (title !== "" && date !== "") {
+        plan.saveAll(workout);
+      }
+
     });
 
 
