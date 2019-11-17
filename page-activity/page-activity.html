@@ -37,7 +37,7 @@
       </div>
       <div class="modal-body">
         <!-- Form to insert the values -->
-        <form class="addActivityForm" onsubmit="ActivityPage.onSaveNewActivity(event); console.log('Submit!');">
+        <form class="addActivityForm" onsubmit="ActivityPage.onSaveNewActivity(event);">
           <!-- Input to insert the name -->
           <div class="formContainer">
             Name: <input id="idAddActivityForm-nameField" type="text" name="name" placeholder="Name" required>
@@ -64,11 +64,11 @@
           </div>
           <!-- Input to insert the Calories -->
           <div class="formContainer">
-            Calories: <input id="idAddActivityForm-caloriesField" type="number" placeholder="Calories" maxlength="9" required>
+            Calories: <input id="idAddActivityForm-caloriesField"  placeholder="Calories" maxlength="9" required>
           </div>
           <!-- Input to insert the distance -->
           <div class="formContainer">
-            Distance: <input id="idAddActivityForm-distanceField" type="number" placeholder="Distance" maxlength="9" required>
+            Distance: <input id="idAddActivityForm-distanceField" type="number" type="number" step="0.01" placeholder="Distance" maxlength="9" required>
           </div>
           <!-- Input to insert the heart rate -->
           <div class="formContainer">
