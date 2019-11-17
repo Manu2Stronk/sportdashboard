@@ -1,15 +1,11 @@
 class Plan {
-  constructor() {
-    // this.dropdown = dropdown;
-  }
+  constructor() {}
 
   async loadAll(divWorkout, divListOfWorkouts, workouts, dropdown, id) {
-    console.log("plan.loadAll()");
     let oWorkout = new Workout();
     var oQuerySnapshotPlan = await firebase.firestore().collection("workouts").get();
     oQuerySnapshotPlan.docs.forEach((oDocument) => {
       oWorkout = this.load(divWorkout, divListOfWorkouts, workouts, dropdown, id, oDocument);
-      console.log("oWorkout: " + oWorkout.distance);
       this.addWorkout(workouts, oWorkout);
     })
 
@@ -18,10 +14,6 @@ class Plan {
   }
 
   load(divWorkout, divListOfWorkouts, workouts, dropdown, id, oDocument) {
-    console.log("plan.load()");
-
-
-
     var oWorkout = oDocument.data();
     id = oDocument.id;
     let title = oWorkout.title;
@@ -40,10 +32,7 @@ class Plan {
     return oWorkout;
   }
 
-
   saveAll(workout) {
-    console.log("plan.saveAll()");
-
     let distance = this.arrayToString(Object.values(workout.distance));
     let duration = this.arrayToString(Object.values(workout.duration));
     if (distance === "") {
@@ -60,22 +49,15 @@ class Plan {
       sports: workout.kindOfSport,
       discription: workout.discription
     }
-
-    firebase.firestore().collection("workouts").doc().set(oActivity);
-
+    let setData = firebase.firestore().collection("workouts").doc().set(oActivity);
   }
 
-
   save(divWorkout, divListOfWorkouts, workouts, workout, dropdown) {
-    console.log("plan.save()");
     //delete All Elements of dropdown
     while (dropdown.firstChild) {
       dropdown.removeChild(dropdown.firstChild);
     }
     divWorkout.style.display = "none";
-
-    // this.saveAll(workout);
-
     //creating new dropdown by generating new elements from each workout of workouts
     for (var i = 0; i < workouts.length; i++) {
       // def div-Element
@@ -83,14 +65,12 @@ class Plan {
       divElement.className += "workoutElement";
       divElement.id = "workoutElement";
       divElement.setAttribute("data-id", workouts[i].id);
-
       // def buttonElement
       let buttonElement = document.createElement("input");
       buttonElement.className += "buttonCloseWorkout";
       buttonElement.value += "x";
       buttonElement.type = "button";
       buttonElement.id = "buttonCloseWorkout";
-
       let titleElement = document.createElement("input");
       titleElement.className += "inputTitle inputGeneral";
       titleElement.type = "text";
@@ -98,7 +78,6 @@ class Plan {
       let inputValue = Object.values(Object.values(workouts[i].title));
       let placeholder = this.arrayToString(inputValue);
       titleElement.value += placeholder;
-
       let dateElement = document.createElement("input");
       dateElement.className += "inputDate inputGeneral";
       dateElement.type = "text";
@@ -106,12 +85,8 @@ class Plan {
       inputValue = Object.values(Object.values(workouts[i].date));
       placeholder = this.arrayToString(inputValue);
       dateElement.value += placeholder + ":";
-
       let distancElement = document.createElement("input");
-
-
       let distanceValue = "0km / 0min";
-
       try {
         if (this.arrayToString(Object.values(workouts[i].distance)) !== "" || workouts[i].distance !== "") {
           distanceValue = this.arrayToString(Object.values(workouts[i].distance)) + "km";
@@ -123,7 +98,6 @@ class Plan {
           distanceValue = this.arrayToString(Object.values(workouts[i].distance)) + "km / " + this.arrayToString(Object.values(workouts[i].duration)) + "min";
         }
       } catch {}
-
       try {
         if (workouts[i].distance !== "") {
           distanceValue = workouts[i].distance + "km";
@@ -135,22 +109,16 @@ class Plan {
           distanceValue = workouts[i].distance + "km / " + workouts[i].duration + "min";
         }
       } catch {}
-
-      // console.log("was drin steht: " + this.arrayToString(Object.values(workouts[i].distance)) !== "" && this.arrayToString(Object.values(workouts[i].duration)) !== "");
-      console.log("distanceValue: " + distanceValue);
-
       distancElement.className += "input_Distance inputGeneral";
       distancElement.type = "text";
       distancElement.disabled = true;
       distancElement.value += distanceValue;
-
       let kindOfSportElement = document.createElement("input");
       let kindOfSportValue = "";
       kindOfSportValue = this.arrayToString(Object.values(workouts[i].kindOfSport));
       kindOfSportElement.className += "inputKindOfSport inputGeneral";
       kindOfSportElement.type = "text";
       kindOfSportElement.disabled = true;
-
       if (kindOfSportValue === "Bike") {
         kindOfSportElement.value += "🚴";
       }
@@ -164,7 +132,6 @@ class Plan {
         kindOfSportElement.value += "🏋️";
       }
       let lineElement = document.createElement("hr");
-
       // add to dropdown
       dropdown.appendChild(divElement);
       divElement.appendChild(buttonElement);
@@ -173,30 +140,18 @@ class Plan {
       divElement.appendChild(kindOfSportElement);
       divElement.appendChild(distancElement);
       divElement.appendChild(titleElement);
-
-      console.log("_workouts[].id: " + workouts[i].id);
-
       //add delete function to buttonElement
-
       buttonElement.addEventListener("click", (e) => {
         e.stopPropagation();
         let id = e.target.parentElement.getAttribute("data-id");
-        console.log(id);
         firebase.firestore().collection("workouts").doc(id).delete();
         divElement.parentNode.removeChild(divElement);
         workouts.splice(workouts.indexOf(workout), 1);
-
-
-        for (var i = 0; i < workouts.length; i++) {
-          console.log("workoutsDelete: " + Object.values(Object.values(workouts[i])));
-        }
       });
     }
   }
 
   create(divWorkout) {
-    console.log("plan.create()");
-
     let block = this.arrayToString(Object.values(document.getElementById("divWorkout").style.display));
     if (block === "block") {
       divWorkout.style.display = "none";
@@ -206,40 +161,27 @@ class Plan {
   }
 
   changeDistance() {
-    console.log("plan.changeDistance()");
-
     let distance = "";
     distance = document.getElementById("distance").value;
-    console.log("change() distance: " + distance);
     document.getElementById("textDistance").innerHTML = "Duration";
     document.getElementById("distance").id = "duration";
     document.getElementById("duration").placeholder = "0min";
     document.getElementById("duration").innerHTML = duration;
-
     return distance;
   }
 
   changeDuration() {
-    console.log("plan.changeDuration()");
-
     let duration = "";
     duration = document.getElementById("duration").value;
-    console.log("change() duration: " + duration);
     document.getElementById("textDistance").innerHTML = "Distance";
     document.getElementById("duration").id = "distance";
     document.getElementById("distance").placeholder = "0km";
     document.getElementById("distance").innerHTML = distance;
-
     return duration;
   }
 
   addWorkout(workouts, workout) {
-    console.log("plan.addWorkout()");
-
     workouts.push(workout);
-    for (var i = 0; i < workouts.length; i++) {
-      console.log("workouts: " + Object.values(Object.values(workouts[i])));
-    }
   }
 
   sortWorkouts(workouts) {
@@ -252,9 +194,6 @@ class Plan {
           workouts[j] = temp;
         }
       }
-    }
-    for (var i = 0; i < workouts.length; i++) {
-      console.log("workouts_sort: " + Object.values(Object.values(workouts[i])));
     }
   }
 
@@ -276,7 +215,6 @@ class Plan {
   getDuration(duration) {
     try {
       duration = document.getElementById("duration").value;
-      console.log("duration in get Duration: " + duration);
     } catch {}
     return duration;
   }
